@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 9 Security &amp; Private Data | Collaborative Data Science Practices</title>
+<meta name="author" content="Will Beasley">
+<meta name="description" content="Overview {Include a few paragraphs that describe principles and mentality, and how the following sections contribute.} The report’s dataset(s) are preferably stored in REDCap or SQL Server....">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 9 Security &amp; Private Data | Collaborative Data Science Practices">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Overview {Include a few paragraphs that describe principles and mentality, and how the following sections contribute.} The report’s dataset(s) are preferably stored in REDCap or SQL Server....">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 9 Security &amp; Private Data | Collaborative Data Science Practices">
+<meta name="twitter:description" content="Overview {Include a few paragraphs that describe principles and mentality, and how the following sections contribute.} The report’s dataset(s) are preferably stored in REDCap or SQL Server....">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Collaborative Data Science Practices</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="coding.html"><span class="header-section-number">2</span> Coding Principles</a></li>
+<li><a class="" href="architecture.html"><span class="header-section-number">3</span> Architecture Principles</a></li>
+<li><a class="" href="file-prototype-r.html"><span class="header-section-number">4</span> Prototypical R File</a></li>
+<li><a class="" href="file-prototype-sql.html"><span class="header-section-number">5</span> Prototypical SQL File</a></li>
+<li><a class="" href="repo-prototype.html"><span class="header-section-number">6</span> Prototypical Repository</a></li>
+<li><a class="" href="rest.html"><span class="header-section-number">7</span> Data at Rest</a></li>
+<li><a class="" href="patterns.html"><span class="header-section-number">8</span> Patterns</a></li>
+<li><a class="active" href="security.html"><span class="header-section-number">9</span> Security &amp; Private Data</a></li>
+<li><a class="" href="automation.html"><span class="header-section-number">10</span> Automation &amp; Reproducibility</a></li>
+<li><a class="" href="scaling-up.html"><span class="header-section-number">11</span> Scaling Up</a></li>
+<li><a class="" href="collaboration.html"><span class="header-section-number">12</span> Parallel Collaboration</a></li>
+<li><a class="" href="document.html"><span class="header-section-number">13</span> Documentation</a></li>
+<li><a class="" href="style.html"><span class="header-section-number">14</span> Style Guide</a></li>
+<li><a class="" href="publication.html"><span class="header-section-number">15</span> Publishing Results</a></li>
+<li><a class="" href="testing-and-validation.html"><span class="header-section-number">16</span> Testing, Validation, &amp; Defensive Programming</a></li>
+<li><a class="" href="troubleshooting.html"><span class="header-section-number">17</span> Troubleshooting and Debugging</a></li>
+<li><a class="" href="workstation.html"><span class="header-section-number">18</span> Workstation</a></li>
+<li><a class="" href="tools.html"><span class="header-section-number">19</span> Considerations when Selecting Tools</a></li>
+<li><a class="" href="team.html"><span class="header-section-number">20</span> Growing a Team</a></li>
+<li><a class="" href="redcap-user.html"><span class="header-section-number">21</span> Material for REDCap Users</a></li>
+<li><a class="" href="redcap-developer.html"><span class="header-section-number">22</span> Material for REDCap Developers</a></li>
+<li><a class="" href="redcap-admin.html"><span class="header-section-number">23</span> Material for REDCap Admins</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="git.html"><span class="header-section-number">A</span> Git &amp; GitHub</a></li>
+<li><a class="" href="snippets.html"><span class="header-section-number">B</span> Snippets</a></li>
+<li><a class="" href="presentations.html"><span class="header-section-number">C</span> Presentations</a></li>
+<li><a class="" href="scratch-pad.html"><span class="header-section-number">D</span> Scratch Pad of Loose Ideas</a></li>
+<li><a class="" href="example-dashboard.html"><span class="header-section-number">E</span> Example Dashboard</a></li>
+<li><a class="" href="example-chapter.html"><span class="header-section-number">F</span> Example Chapter</a></li>
+<li><a class="" href="acknowledgements.html"><span class="header-section-number">G</span> Acknowledgements</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">H</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/OuhscBbmc/data-science-practices-1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="security" class="section level1">
+<h1>
+<span class="header-section-number">9</span> Security &amp; Private Data<a class="anchor" aria-label="anchor" href="#security"><i class="fas fa-link"></i></a>
+</h1>
+<p>Overview</p>
+<p><em>{Include a few paragraphs that describe principles and mentality, and how the following sections contribute.}</em></p>
+<p>The report’s dataset(s) are preferably stored in REDCap or SQL Server.
+They’re absolutely not stored not on GitHub or the local machine.
+Avoid Microsoft Access, Excel, CSVs, or anything without user accounts.
+If the PHI must be stored as a loose file (eg, CSV), keep it on the encrypted file server.
+Any PHI on a fileserver should be stored in a directory controlled by a fairly restrictive Windows AD group. Only ~4 people on a project probably need access to those files, not all ~20 people on a project.
+There are many benefits of SQL Server over CSVs or Excel files .
+It’s protected by Odyssey (not just the VPN).
+It provides auditing logs.
+It provides schemas to further partition authorization.
+Real databases aren’t accidentally emailed or copied to an unsecured location.
+Transfer PHI into REDCap &amp; SQL Server as early as possible (particularly the CSVs &amp; XLSXs we regularly receive from partners).
+Temporary and derivative datasets are stored in SQL Server, not as a CSV on the fileserver.</p>
+<div id="security-guidelines" class="section level2">
+<h2>
+<span class="header-section-number">9.1</span> Security Guidelines<a class="anchor" aria-label="anchor" href="#security-guidelines"><i class="fas fa-link"></i></a>
+</h2>
+<p>If you encounter a decision that’s not described by this chapter’s the security practices, follow these underlying concepts. And of course, consult other people.</p>
+<ul>
+<li>Principle of least privilege: expose as little as possible.
+<ul>
+<li>Limit the number of team members.</li>
+<li>Limit the amount of data (consider rows &amp; columns).</li>
+<li>Obfuscate values and remove unnecessary PHI in derivative datasets.</li>
+</ul>
+</li>
+<li>Redundant layers of protection.
+<ul>
+<li>A single point of failure shouldn’t be enough to breach PHI security.</li>
+</ul>
+</li>
+<li>Simplicity when possible.
+<ul>
+<li>Store data in only two houses (eg, REDCap &amp; SQL Server).</li>
+<li>Easier to identify &amp; manage than a bunch of PHI CSVs scattered across a dozen folders, with versions.
+<ul>
+<li>Manipulate your data programmatically, not manually.</li>
+</ul>
+</li>
+<li>Your Windows AD account controls everything, indirectly or directly:
+<ul>
+<li>VPN, Odyssey, file server, SQL, REDCap, &amp; REDCap API.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Lock out team members when possible.
+<ul>
+<li>It’s not that you don’t trust them with a lot of unnecessary data, it’s that you don’t trust their ex-boyfriends and their coffee shop hackers.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="dataset-level-redaction" class="section level2">
+<h2>
+<span class="header-section-number">9.2</span> Dataset-level Redaction<a class="anchor" aria-label="anchor" href="#dataset-level-redaction"><i class="fas fa-link"></i></a>
+</h2>
+<p>Several multi-layered strategies exist to prevent exposing PHI. One approach is simply to reduce the information contained in each variable. Much of the information in a medical record is not useful for modeling or descriptive statistics, and therefore can be omitted from downstream datasets. The techniques include:</p>
+<ol style="list-style-type: decimal">
+<li>
+<em>Remove the variable</em>: An empty bucket has nothing to leak.</li>
+<li>
+<em>Decrease the resolution</em>: Many times, a patient’s year of birth is adequate for analysis, and include the month and day are unnecessary risks.</li>
+<li>
+<em>Hash and salt identifiers</em>: use cryptographic-quality algorithms transform an ID to a derived value. For example, “234” becomes “1432c1a399”. The original value of 234 is not recoverable from 1432c1a399. But two rows with 1432c1a399 are still attributed to the same patient by the statistical model.</li>
+</ol>
+</div>
+<div id="security-for-data-at-rest" class="section level2">
+<h2>
+<span class="header-section-number">9.3</span> Security for Data at Rest<a class="anchor" aria-label="anchor" href="#security-for-data-at-rest"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>The report’s dataset(s) are preferably stored in REDCap or SQL Server.
+<ul>
+<li>They’re absolutely not stored not on GitHub or the local machine.</li>
+<li>Avoid Microsoft Access, Excel, CSVs, or anything without user accounts.</li>
+<li>If the PHI must be stored as a loose file (eg, CSV), keep it on the encrypted file server.</li>
+</ul>
+</li>
+<li>Any PHI on a fileserver should be stored in a directory controlled by a fairly restrictive Windows AD group. Only ~4 people on a project probably need access to those files, not all ~20 people on a project.</li>
+<li>There are many benefits of SQL Server over CSVs or Excel files .
+<ul>
+<li>It’s protected by Odyssey (not just the VPN).</li>
+<li>It provides auditing logs.</li>
+<li>It provides schemas to further partition authorization.</li>
+<li>Real databases aren’t accidentally emailed or copied to an unsecured location.</li>
+</ul>
+</li>
+<li>Transfer PHI into REDCap &amp; SQL Server as early as possible (particularly the CSVs &amp; XLSXs we regularly receive from partners).</li>
+<li>Temporary and derivative datasets are stored in SQL Server, not as a CSV on the fileserver.</li>
+<li>Hash values when possible. For instance, when we determine families/networks of people, we use things like SSNs. But the algorithm that identifies the clusters doesn’t need to know the <em>actual</em> SSN, just that two records have the <em>same</em> SSN. Something like a <a href="http://en.wikipedia.org/wiki/SHA-2">SHA-256 hash</a> is good for this. The algorithm can operate on the hashed SSN just as effectively as the real SSN. However the original SSN can’t be determined from its hashed value. If the table is accidentally exposed to the public, no PHI is compromised. The following two files help the hashing &amp; salting process: <a href="https://github.com/OuhscBbmc/RedcapExamplesAndPatterns/blob/master/CodeUtilities/HashUtility.R">HashUtility.R</a> and <a href="https://github.com/OuhscBbmc/RedcapExample/blob/master/CodeUtilities/CreateSalt.R">CreateSalt.R</a>.</li>
+</ul>
+</div>
+<div id="file-level-permissions" class="section level2">
+<h2>
+<span class="header-section-number">9.4</span> File-level permissions<a class="anchor" aria-label="anchor" href="#file-level-permissions"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="database-permissions" class="section level2">
+<h2>
+<span class="header-section-number">9.5</span> Database permissions<a class="anchor" aria-label="anchor" href="#database-permissions"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="public-private-repositories" class="section level2">
+<h2>
+<span class="header-section-number">9.6</span> Public &amp; Private Repositories<a class="anchor" aria-label="anchor" href="#public-private-repositories"><i class="fas fa-link"></i></a>
+</h2>
+<div id="repo-rules" class="section level3">
+<h3>
+<span class="header-section-number">9.6.1</span> Repo Rules<a class="anchor" aria-label="anchor" href="#repo-rules"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>A code repository should be private, and restricted to only the necessary project members.</li>
+<li>The repo should be controled by an OUHSC organization, and not by an individual’s private account.</li>
+<li>The <code>.gitignore</code> file prohibits common data file formats from being pushed/uploaded to the central repository.
+<ul>
+<li>Examples: accdb, mdb, xlsx, csv, sas7bdat, rdata, RHistory.</li>
+<li>If you have a text file without PHI that must be on GitHub, create a new extension for it like ’*.PhiFree’.</li>
+<li>Or you can include a specific exception to the .gitignore file, but adding an exclamation point in front of the file, such as <code>!RecruitmentProductivity/RecruitingZones/ZipcodesToZone.csv</code>. An example is included in the current repository’s [.gitignore file(<a href="https://github.com/OuhscBbmc/RedcapExamplesAndPatterns/blob/master/.gitignore" class="uri">https://github.com/OuhscBbmc/RedcapExamplesAndPatterns/blob/master/.gitignore</a>).</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="scrubbing-github-history" class="section level3">
+<h3>
+<span class="header-section-number">9.6.2</span> Scrubbing GitHub history<a class="anchor" aria-label="anchor" href="#scrubbing-github-history"><i class="fas fa-link"></i></a>
+</h3>
+<p>Occasionally files may be committed to your git repository that need to be removed completely. Not just from the current collections of files (<em>i.e.</em>, the branch’s <a href="https://git-scm.com/docs/gitglossary#gitglossary-aiddefHEADaHEAD">head</a>), but from the entire history of the repo.</p>
+<p>Scrubbing is require typically when (a) a sensitive file has been accidentally committed and pushed to GitHub, or (b) a huge file has bloated your repository and disrupted productivity.</p>
+<p>The two suitable scrubbing approaches both require the command line. The first is the <code>git-filter-branch</code> command within git, and the second is the <a href="https://rtyley.github.io/bfg-repo-cleaner/">BFG repo-cleaner</a>. We use the second approach, which is [recommended by GitHub]; it requires 15 minutes to install and configure from scratch, but then is much easier to develop against, and executes much faster.</p>
+<p>The <a href="https://www.gnu.org/software/bash/">bash</a>-centric steps below remove any file<em>s</em> from the repo history called ‘monster-data.csv’ from the ‘bloated’ repository.</p>
+<ol style="list-style-type: decimal">
+<li><p>If the file contains passwords, change them immediately.</p></li>
+<li><p>Delete ‘monster-data.csv’ from your branch and push the commit to GitHub.</p></li>
+<li><p>Ask your collaborators to push any outstanding commits to GitHub and delete their local copy of the repo. Once scrubbing is complete, they will re-clone it.</p></li>
+<li><p>Download and install the most recent Java JRE from the Oracle site.</p></li>
+<li><p>Download the most recent jar file from the BFG site to the home directory.</p></li>
+<li>
+<p>Clone a fresh copy of the repository in the user’s home directory. The <code>--mirror</code> argument avoids downloading every file, and downloads only the bookkeeping details required for scrubbing.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb46-1"><a href="security.html#cb46-1"></a><span class="bu">cd</span> ~</span>
+<span id="cb46-2"><a href="security.html#cb46-2"></a><span class="fu">git</span> clone --mirror https://github.com/your-org/bloated.git</span></code></pre></div>
+</li>
+<li>
+<p>Remove all files (in any directory) called ‘monster-data.csv’.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb47-1"><a href="security.html#cb47-1"></a><span class="ex">java</span> -jar bfg-*.jar --delete-files monster-data.csv bloated.git</span></code></pre></div>
+</li>
+<li>
+<p><a href="https://git-scm.com/docs/git-reflog">Reflog</a> and <a href="https://git-scm.com/docs/git-gc">garbage collect</a> the repo.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb48-1"><a href="security.html#cb48-1"></a><span class="bu">cd</span> bloated.git</span>
+<span id="cb48-2"><a href="security.html#cb48-2"></a><span class="fu">git</span> reflog expire --expire=now --all <span class="kw">&amp;&amp;</span> <span class="fu">git</span> gc --prune=now --aggressive</span></code></pre></div>
+</li>
+<li>
+<p>Push your local changes to the GitHub server.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb49-1"><a href="security.html#cb49-1"></a><span class="fu">git</span> push</span></code></pre></div>
+</li>
+<li>
+<p>Delete the bfg jar from the home directory.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb50-1"><a href="security.html#cb50-1"></a><span class="bu">cd</span> ~</span>
+<span id="cb50-2"><a href="security.html#cb50-2"></a><span class="fu">rm</span> bfg-*.jar</span></code></pre></div>
+</li>
+<li><p>Ask your collaborators to re-clone the repo to their local machine. It is important they restart with a fresh copy, so the once-scrubbed file is not reintroduced into the repo’s history.</p></li>
+<li><p>If the file contains sensitive information, like passwords or PHI, ask GitHub to refresh the cache so the file’s history isn’t accessible through their website, even if the repo is private.</p></li>
+</ol>
+<div id="resources" class="section level5">
+<h5>
+<span class="header-section-number">9.6.2.0.1</span> Resources<a class="anchor" aria-label="anchor" href="#resources"><i class="fas fa-link"></i></a>
+</h5>
+<ul>
+<li><a href="https://rtyley.github.io/bfg-repo-cleaner/">BFG Repo-Cleaner site</a></li>
+<li><a href="https://github.com/IBM/BluePic/wiki/Using-BFG-Repo-Cleaner-tool-to-remove-sensitive-files-from-your-git-repo">Additional BFG instructions</a></li>
+<li><a href="https://help.github.com/articles/github-sensitive-data-removal-policy/">GitHub Sensitive Data Removal Policy</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="patterns.html"><span class="header-section-number">8</span> Patterns</a></div>
+<div class="next"><a href="automation.html"><span class="header-section-number">10</span> Automation &amp; Reproducibility</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#security"><span class="header-section-number">9</span> Security &amp; Private Data</a></li>
+<li><a class="nav-link" href="#security-guidelines"><span class="header-section-number">9.1</span> Security Guidelines</a></li>
+<li><a class="nav-link" href="#dataset-level-redaction"><span class="header-section-number">9.2</span> Dataset-level Redaction</a></li>
+<li><a class="nav-link" href="#security-for-data-at-rest"><span class="header-section-number">9.3</span> Security for Data at Rest</a></li>
+<li><a class="nav-link" href="#file-level-permissions"><span class="header-section-number">9.4</span> File-level permissions</a></li>
+<li><a class="nav-link" href="#database-permissions"><span class="header-section-number">9.5</span> Database permissions</a></li>
+<li>
+<a class="nav-link" href="#public-private-repositories"><span class="header-section-number">9.6</span> Public &amp; Private Repositories</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#repo-rules"><span class="header-section-number">9.6.1</span> Repo Rules</a></li>
+<li><a class="nav-link" href="#scrubbing-github-history"><span class="header-section-number">9.6.2</span> Scrubbing GitHub history</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/OuhscBbmc/data-science-practices-1/blob/main/ch-security.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/OuhscBbmc/data-science-practices-1/edit/main/ch-security.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Collaborative Data Science Practices</strong>" was written by Will Beasley. It was last built on 2022-02-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>E Example Dashboard | Collaborative Data Science Practices</title>
+<meta name="author" content="Will Beasley">
+<meta name="description" content="Communicating quantitative trends to a community with a quantitative phobia can be difficult. This appendix showcases a dashboard style that has evolved during the past few years of OSDH Home...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="E Example Dashboard | Collaborative Data Science Practices">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Communicating quantitative trends to a community with a quantitative phobia can be difficult. This appendix showcases a dashboard style that has evolved during the past few years of OSDH Home...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="E Example Dashboard | Collaborative Data Science Practices">
+<meta name="twitter:description" content="Communicating quantitative trends to a community with a quantitative phobia can be difficult. This appendix showcases a dashboard style that has evolved during the past few years of OSDH Home...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Collaborative Data Science Practices</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="coding.html"><span class="header-section-number">2</span> Coding Principles</a></li>
+<li><a class="" href="architecture.html"><span class="header-section-number">3</span> Architecture Principles</a></li>
+<li><a class="" href="file-prototype-r.html"><span class="header-section-number">4</span> Prototypical R File</a></li>
+<li><a class="" href="file-prototype-sql.html"><span class="header-section-number">5</span> Prototypical SQL File</a></li>
+<li><a class="" href="repo-prototype.html"><span class="header-section-number">6</span> Prototypical Repository</a></li>
+<li><a class="" href="rest.html"><span class="header-section-number">7</span> Data at Rest</a></li>
+<li><a class="" href="patterns.html"><span class="header-section-number">8</span> Patterns</a></li>
+<li><a class="" href="security.html"><span class="header-section-number">9</span> Security &amp; Private Data</a></li>
+<li><a class="" href="automation.html"><span class="header-section-number">10</span> Automation &amp; Reproducibility</a></li>
+<li><a class="" href="scaling-up.html"><span class="header-section-number">11</span> Scaling Up</a></li>
+<li><a class="" href="collaboration.html"><span class="header-section-number">12</span> Parallel Collaboration</a></li>
+<li><a class="" href="document.html"><span class="header-section-number">13</span> Documentation</a></li>
+<li><a class="" href="style.html"><span class="header-section-number">14</span> Style Guide</a></li>
+<li><a class="" href="publication.html"><span class="header-section-number">15</span> Publishing Results</a></li>
+<li><a class="" href="testing-and-validation.html"><span class="header-section-number">16</span> Testing, Validation, &amp; Defensive Programming</a></li>
+<li><a class="" href="troubleshooting.html"><span class="header-section-number">17</span> Troubleshooting and Debugging</a></li>
+<li><a class="" href="workstation.html"><span class="header-section-number">18</span> Workstation</a></li>
+<li><a class="" href="tools.html"><span class="header-section-number">19</span> Considerations when Selecting Tools</a></li>
+<li><a class="" href="team.html"><span class="header-section-number">20</span> Growing a Team</a></li>
+<li><a class="" href="redcap-user.html"><span class="header-section-number">21</span> Material for REDCap Users</a></li>
+<li><a class="" href="redcap-developer.html"><span class="header-section-number">22</span> Material for REDCap Developers</a></li>
+<li><a class="" href="redcap-admin.html"><span class="header-section-number">23</span> Material for REDCap Admins</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="git.html"><span class="header-section-number">A</span> Git &amp; GitHub</a></li>
+<li><a class="" href="snippets.html"><span class="header-section-number">B</span> Snippets</a></li>
+<li><a class="" href="presentations.html"><span class="header-section-number">C</span> Presentations</a></li>
+<li><a class="" href="scratch-pad.html"><span class="header-section-number">D</span> Scratch Pad of Loose Ideas</a></li>
+<li><a class="active" href="example-dashboard.html"><span class="header-section-number">E</span> Example Dashboard</a></li>
+<li><a class="" href="example-chapter.html"><span class="header-section-number">F</span> Example Chapter</a></li>
+<li><a class="" href="acknowledgements.html"><span class="header-section-number">G</span> Acknowledgements</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">H</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/OuhscBbmc/data-science-practices-1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="example-dashboard" class="section level1">
+<h1>
+<span class="header-section-number">E</span> Example Dashboard<a class="anchor" aria-label="anchor" href="#example-dashboard"><i class="fas fa-link"></i></a>
+</h1>
+<p>Communicating quantitative trends to a community with a <a href="publication.html#publication-phobic">quantitative phobia</a> can be difficult. This appendix showcases a dashboard style that has evolved during the past few years of <a href="https://www.ok.gov/health/Family_Health/Family_Support_and_Prevention_Service/MIECHV_Program_-_Federal_Home_Visiting_Grant/About_the_MIECHV_Program_-_Federal_Home_Visiting_Grant/index.html">OSDH Home Visiting</a>, where twelve local programs practitioners implemented their own intervention ideas tailored to their interests and community.</p>
+<p>Over 50 dashboards have been developed: a custom dashboard is developed for each program’s cycle, and a three additional dashboards communicate the results of program-agnostic investigations. A style guide is an important tool when managing this many unique investigations</p>
+<p>For a program-specific dashboard, it’s more important to meet the needs of the individual PDSA than to conform to a guide. However, we aim to make the dashboards as consistent as possible for several reasons:</p>
+<ol style="list-style-type: decimal">
+<li>It’s less work for the practitioners. A familiar presentation will help the practitioners grow comfortable with their new cycle’s dashboard. Recall most will use at least five dashboards in only a few years.</li>
+<li>It’s less work for the analysts/developers. Within a cycle, a consistent format (with relatively interchangeable features) means that one analyst can more easily contribute and trouble shoot a colleague’s dashboard.</li>
+<li>The lessons we’ve learned (and mistakes we’ve made) can be applied to later dashboards. The quality should improve and the development should quicken.</li>
+</ol>
+<p>Just like our CQI grant encourages an HV program to learn from its history and to learn from others, we as analysts should too. As we work with the programs to design a PDSA, each one analyst will learn about the strengths and weaknesses of our current dashboard style, and propose improvements.</p>
+<div id="example-dashboard-example" class="section level2">
+<h2>
+<span class="header-section-number">E.1</span> Example<a class="anchor" aria-label="anchor" href="#example-dashboard-example"><i class="fas fa-link"></i></a>
+</h2>
+<p>A example dashboard that mimic the real CQI is available at <a href="https://ouhscbbmc.github.io/data-science-practices-1/dashboard-1.html">https://ouhscbbmc.github.io/data-science-practices-1/dashboard-1.html</a>. The dashboard source code is available in the <a href="https://github.com/wibeasley/RAnalysisSkeleton/tree/master/analysis/dashboard-1"><code>analysis/dashboard-1</code></a> directory of the <a href="https://github.com/wibeasley/RAnalysisSkeleton#readme">R Analysis Skeleton</a> repository’; this repo contains the code and documents the entire pipeline leading up to this dashboard.</p>
+<p>We’ve had success developing and distributing dashboards as self-contained html files. They are portable and don’t have dependencies on local data files or remote databases, yet the JavaScript and CSS provide a modest amount of interactivity. The dashboard’s principal components are <a href="https://rmarkdown.rstudio.com/flexdashboard/">flexdashboard</a>, <a href="https://plot.ly/r/">plotly</a>, <a href="https://ggplot2.tidyverse.org/">ggplot2</a>, and <a href="https://rmarkdown.rstudio.com/">R Markdown</a>.</p>
+<p>In this dashboard of synthetic data, a cognitive measure is tracked across 14 years in three home visiting counties.</p>
+</div>
+<div id="example-dashboard-guide" class="section level2">
+<h2>
+<span class="header-section-number">E.2</span> Style Guide<a class="anchor" aria-label="anchor" href="#example-dashboard-guide"><i class="fas fa-link"></i></a>
+</h2>
+<p>This section describes a set of practices that the <a href="https://ouhsc.edu/bbmc/">BBMC analysts</a> have decided are best for the CQI dashboards used in our MIECHV evaluations. In a sense, this CQI dashboard guide supplements our overall <a href="style.html#style">style guide</a>.</p>
+<p>The MIECHV CQI dashboards are based on RStudio’s <a href="https://rmarkdown.rstudio.com/flexdashboard/">flexdashboard</a> package, which uses <a href="https://CRAN.R-project.org/package=rmarkdown">rmarkdown</a>, JavaScript, and CSS. flexdashboard has a <a href="https://rmarkdown.rstudio.com/flexdashboard/">great website</a> that should be read by anyone adapting this guide for their own CQI projects.</p>
+<div id="headline-page" class="section level3">
+<h3>
+<span class="header-section-number">E.2.1</span> Headline page<a class="anchor" aria-label="anchor" href="#headline-page"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://ouhscbbmc.github.io/data-science-practices-1/dashboard-1.html#headline">
+<img src="resources/example-dashboard/headline.png" style="width: 2000px;"></a></p>
+<p>The <a href="https://ouhscbbmc.github.io/data-science-practices-1/dashboard-1.html#summary">dashboard’s greeting</a> should be a good blend of (a) orientating the user to the context and (b) being welcoming but not overwhelming. For the second PDSA cycle, try to have only one or two important and impactful graphs on the first page; specialized graphs have their own pages later.</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Left column: Text</strong> qualified with <code>{.tabset}</code>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Notes tab</strong>: text that provides info about the dashboard’s dataset, such as
+<ul>
+<li>Count of (a) models, (b) programs, (c) clients, and (d) observations</li>
+<li>Date range</li>
+<li>The specific <code>program_code</code>s. Even though a PDSA is focused on a specific program, ideally other programs are included so they have a feel for what others are doing.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<strong>Right column: Headline Graph(s)</strong> optionally qualified with <code>{.tabset}</code>.
+<ul>
+<li>Ideally starts with an overall graph, with no longitudinal component.</li>
+<li>Show data only from the program, not the overall model.</li>
+</ul>
+</li>
+</ol>
+</div>
+<div id="tables-page" class="section level3">
+<h3>
+<span class="header-section-number">E.2.2</span> Tables page<a class="anchor" aria-label="anchor" href="#tables-page"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://ouhscbbmc.github.io/data-science-practices-1/dashboard-1.html#tables">
+<img src="resources/example-dashboard/tables.png" style="width: 2000px;"></a></p>
+<p>The <a href="https://ouhscbbmc.github.io/data-science-practices-1/dashboard-1.html#tables">tables provide exactness</a>, especially the exactness of (a) the actual <em>y</em> value and (b) the frequency of the longitudinal values. These tables make it easier to see if you’re inadvertently plotting multiple values for the same month, or if some month is missing. In the future, we can add a ‘Download as CSV’ button if anyone requests it.</p>
+<p>Another advantage of the tables is that all measures are visible in the same screen. A typical program-month table will have at least 6 columns: <code>program_code</code>, <code>month</code>, <code>model</code>, outcome measure, process measure, and disruptor measure. If this is difficult to do, then the upstream <a href="patterns.html#pattern-scribe">scribe</a> probably isn’t doing its job well. These tables should be almost untouched from the rds files created in the ‘load-data’ chunk.</p>
+<p>Each tab should represent a different unit of analysis (<em>e.g.</em>, a single row summarizing the completed visits for a program-month). Use all the tabs below that are appropriate for the PDSA. Go from biggest unit (<em>e.g.</em>, model) to smallest unit (<em>e.g.</em>, Provider-Week).</p>
+<ol style="list-style-type: decimal">
+<li>
+<p><strong>Unnamed column</strong> qualified with <code>{.tabset}</code>.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Model tab</strong></li>
+<li><strong>Program tab</strong></li>
+<li><strong>Program-Month tab</strong></li>
+<li><strong>Program-Week tab</strong></li>
+<li><strong>Provider-Week tab</strong></li>
+<li>
+<strong>Spaghetti Annotation tab</strong> If your spaghetti plots use faint vertical lines to mark events (<em>e.g.</em>, the start of a PDSA intervention), include the events here too.</li>
+</ol>
+</li>
+</ol>
+</div>
+<div id="graphs-page" class="section level3">
+<h3>
+<span class="header-section-number">E.2.3</span> Graphs page<a class="anchor" aria-label="anchor" href="#graphs-page"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://ouhscbbmc.github.io/data-science-practices-1/dashboard-1.html#graphs">
+<img src="resources/example-dashboard/graphs.png" style="width: 2000px;"></a></p>
+<p>The <a href="https://ouhscbbmc.github.io/data-science-practices-1/dashboard-1.html#graphs">graphs plots</a> should provide the user with a feel of the trends. One graph focuses on one measure, so ideally a max of three spaghetti plots. Ideally the change over time (for the PDSA’s program) is compared to the other programs during the same period. If a PSDA has multiple Process Measures, give them separate tabs labeled ‘Process Measure 1’ &amp; ‘Process Measure 2’.</p>
+<ol style="list-style-type: decimal">
+<li>
+<p><strong>Unnamed column</strong> qualified with <code>{.tabset}</code>.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Outcome Measure tab</strong></li>
+<li><strong>Process Measure tab</strong></li>
+<li><strong>Disruptor Measure tab</strong></li>
+</ol>
+</li>
+</ol>
+<p>If a spaghetti plot depicts a proportion/percentage measure, then include a visual layer the count/denominator behind each proportion (instead of a separate spaghetti plot dedicated to the denominator). This may include one or more of the following:</p>
+<ol style="list-style-type: decimal">
+<li>geom_point where presence/absence denotes a nonzero/zero denominator</li>
+<li>geom_point where size denotes denominator’s size.</li>
+<li>geom_text (in place of geom_point) that explicitly shows denominator’s size</li>
+<li>geom_text along the bottom axis that explicitly shows denominator’s size</li>
+</ol>
+<ul>
+<li>use <code>spaghetti_2()</code> located in <a href="https://github.com/OuhscBbmc/miechv-3/blob/master/analysis/common/display-1.R">display-1.R</a>. <strong>(not yet developed.)</strong> Add hover text to each spaghetti.</li>
+</ul>
+</div>
+<div id="marginal-graphs-page" class="section level3">
+<h3>
+<span class="header-section-number">E.2.4</span> Marginal Graphs page<a class="anchor" aria-label="anchor" href="#marginal-graphs-page"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://ouhscbbmc.github.io/data-science-practices-1/dashboard-1.html#marginals">
+<img src="resources/example-dashboard/marginals.png" style="width: 2000px;"></a></p>
+<p>The <a href="https://ouhscbbmc.github.io/data-science-practices-1/dashboard-1.html#marginals">marginal histograms</a> provide context.</p>
+<ul>
+<li><p>Single column, qualified with <code>{.tabset}</code>.</p></li>
+<li>
+<p>Contains a marginal/univariate graph of all variables in the analysis.</p>
+<ul>
+<li><strong>Marginal graph of outcome measure</strong></li>
+<li><strong>Marginal graph of process measure</strong></li>
+<li><strong>Marginal graph of disruptor measure</strong></li>
+</ul>
+</li>
+<li><p>Show data only from the program, not the overall model.</p></li>
+<li><p>Use <code>histogram_2()</code> located in <a href="https://github.com/OuhscBbmc/miechv-3/blob/master/analysis/common/display-1.R">display-1.R</a> (this link is accessible only to Oklahoma’s MIECHV evaluation team). Add hover text to each histogram.</p></li>
+<li><p>If all datasets are the same unit of analysis (<em>e.g.</em>, ‘program-month’), then don’t use an H3 tab. Use (H3) tabs if you have marginals more than one level (<em>e.g.</em>, visit date at program-month, visit date at program-week, visit date at provider-week). But avoid multiple levels, if possible; especially if program isn’t fluent with a single level.</p></li>
+<li><p>histograms have a more specific <em>y</em>-axis. For example, “Count of Months” instead of “Frequency”</p></li>
+</ul>
+</div>
+<div id="documentation-page" class="section level3">
+<h3>
+<span class="header-section-number">E.2.5</span> Documentation page<a class="anchor" aria-label="anchor" href="#documentation-page"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://ouhscbbmc.github.io/data-science-practices-1/dashboard-1.html#documentation">
+<img src="resources/example-dashboard/documentation.png" style="width: 2000px;"></a></p>
+<p>The <a href="https://ouhscbbmc.github.io/data-science-practices-1/dashboard-1.html#documentation">documentation</a> should be self-contained in the same html file, so it’s easier for the practitioner to quickly get the explanation and return to the trends.</p>
+<p>Sometimes it’s best to place an explanation/annotation right next to the relevant content, but other times it’s distracting. And it’s always more work to maintain the explanations if they’re spread-out across the interface. So let’s try keeping almost everything under one or two tabs in the Documentation page.</p>
+<p>To help beyond that, let’s try to reuse as many documentation tabs as possible. The first tab will be specific to the methodology and displays of the PDSA. The remaining tabs will reference common Rmd files; the content will automatically update when the dashboard is rendered next.</p>
+<ol style="list-style-type: decimal">
+<li>
+<p><strong>Unnamed column</strong> qualified with <code>{.tabset}</code>.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Explanation –Current PDSA</strong></li>
+<li><strong>Explanation –All CQI Dashboards</strong></li>
+<li><strong>Glossary</strong></li>
+<li><strong>Tips</strong></li>
+<li><strong>Config</strong></li>
+</ol>
+</li>
+</ol>
+</div>
+<div id="miscellaneous-notes" class="section level3">
+<h3>
+<span class="header-section-number">E.2.6</span> Miscellaneous Notes<a class="anchor" aria-label="anchor" href="#miscellaneous-notes"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>The hierarchy level in this outline indicates the HTML-heading level. Numbers are H1 (<em>i.e.</em>, <code>======</code>) that specify pages, roman numerals are H2 (<em>i.e.</em>, <code>------</code>) that specify columns, and letters are H3 (<em>i.e.</em>, <code>###</code>) that specify tabs.</p></li>
+<li>
+<p>Cosmetics connote the type of dashboard. Specify using the <code>theme</code> or <code>css</code> yaml keywords in the Rmd header.</p>
+<ul>
+<li><p><strong>Common measures</strong>: <a href="https://bootswatch.com/flatly/"><code>theme: simplex</code></a> uses a red banner.</p></li>
+<li><p><strong>1st cycle PDSAs</strong> (<em>i.e.</em>, initial cycle of MIECHV 3): <a href="https://bootswatch.com/cosmo/"><code>theme: cosmo</code></a> uses a blue banner. This default is used if no theme is specified.</p></li>
+<li><p><strong>2nd cycle PDSAs</strong>: <a href="https://bootswatch.com/flatly/"><code>theme: flatly</code></a> uses a turquoise banner.</p></li>
+<li><p><strong>3rd cycle PDSAs</strong>: <a href="https://bootswatch.com/journal/"><code>theme: journal</code></a> uses a light red banner.</p></li>
+<li>
+<p><strong>4th cycle PDSAs</strong> (<em>i.e.</em>, initial cycle of MIECHV 5): <a href="https://github.com/OuhscBbmc/miechv-3/blob/master/analysis/common/style-cqi-cycle-4.css">custom css</a> with a purple banner (a public copy of this css is <a href="resources/example-dashboard/style-cqi-cycle-4.css">available</a>). Instead of a theme, the below line (with four leading spaces, because the yaml entry is nested under <code>output</code> and <code>flexdashboard::flex_dashboard</code>)</p>
+<pre class="rmd"><code>    css: ../../common/style-cqi-cycle-4.css</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="example-dashboard-architecture" class="section level2">
+<h2>
+<span class="header-section-number">E.3</span> Architecture<a class="anchor" aria-label="anchor" href="#example-dashboard-architecture"><i class="fas fa-link"></i></a>
+</h2>
+<p>The dashboard is only one piece of a large workflow. The design and construction of this workflow are discussed in this book, which are highlighted below.</p>
+<p><a href="https://github.com/wibeasley/RAnalysisSkeleton#intra-individual-differences">
+<img src="https://github.com/wibeasley/RAnalysisSkeleton/blob/master/documentation/images/flow-skeleton.png?raw=true" style="width: 1000px;">.
+</a></p>
+<div id="data-from-external-system" class="section level3">
+<h3>
+<span class="header-section-number">E.3.1</span> Data from External System<a class="anchor" aria-label="anchor" href="#data-from-external-system"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="groomed-data-in-warehouse" class="section level3">
+<h3>
+<span class="header-section-number">E.3.2</span> Groomed Data in Warehouse<a class="anchor" aria-label="anchor" href="#groomed-data-in-warehouse"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="analysis-ready-dataset" class="section level3">
+<h3>
+<span class="header-section-number">E.3.3</span> Analysis-Ready Dataset<a class="anchor" aria-label="anchor" href="#analysis-ready-dataset"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>Very little data manipulation should occur in the dashboard. The upstream <a href="patterns.html#pattern-scribe">scribe</a> should produce an analysis-ready rds file. The dashboard should be concerned only with presenting the graphs, tables, summary text, and documentation.</p></li>
+<li><p>Include a common measure if the PDSA explicitly mentions it. Try to show measures only if they’re directly related to the PDSA. The PDSA dashboard will have less exposure to change (which makes it easier to maintain). If a program needs context for their measures, they can look at the common measure dashboard.</p></li>
+</ul>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="scratch-pad.html"><span class="header-section-number">D</span> Scratch Pad of Loose Ideas</a></div>
+<div class="next"><a href="example-chapter.html"><span class="header-section-number">F</span> Example Chapter</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#example-dashboard"><span class="header-section-number">E</span> Example Dashboard</a></li>
+<li><a class="nav-link" href="#example-dashboard-example"><span class="header-section-number">E.1</span> Example</a></li>
+<li>
+<a class="nav-link" href="#example-dashboard-guide"><span class="header-section-number">E.2</span> Style Guide</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#headline-page"><span class="header-section-number">E.2.1</span> Headline page</a></li>
+<li><a class="nav-link" href="#tables-page"><span class="header-section-number">E.2.2</span> Tables page</a></li>
+<li><a class="nav-link" href="#graphs-page"><span class="header-section-number">E.2.3</span> Graphs page</a></li>
+<li><a class="nav-link" href="#marginal-graphs-page"><span class="header-section-number">E.2.4</span> Marginal Graphs page</a></li>
+<li><a class="nav-link" href="#documentation-page"><span class="header-section-number">E.2.5</span> Documentation page</a></li>
+<li><a class="nav-link" href="#miscellaneous-notes"><span class="header-section-number">E.2.6</span> Miscellaneous Notes</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#example-dashboard-architecture"><span class="header-section-number">E.3</span> Architecture</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#data-from-external-system"><span class="header-section-number">E.3.1</span> Data from External System</a></li>
+<li><a class="nav-link" href="#groomed-data-in-warehouse"><span class="header-section-number">E.3.2</span> Groomed Data in Warehouse</a></li>
+<li><a class="nav-link" href="#analysis-ready-dataset"><span class="header-section-number">E.3.3</span> Analysis-Ready Dataset</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/OuhscBbmc/data-science-practices-1/blob/main/ch-example-dashboard.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/OuhscBbmc/data-science-practices-1/edit/main/ch-example-dashboard.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Collaborative Data Science Practices</strong>" was written by Will Beasley. It was last built on 2022-02-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

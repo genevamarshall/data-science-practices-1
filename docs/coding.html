@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 2 Coding Principles | Collaborative Data Science Practices</title>
+<meta name="author" content="Will Beasley">
+<meta name="description" content="2.1 Simplify  2.1.1 Data Types Use the simplest data type reasonable. A simpler data type is less likely contain unintended values. As we have seen, a string variable called gender can...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 2 Coding Principles | Collaborative Data Science Practices">
+<meta property="og:type" content="book">
+<meta property="og:description" content="2.1 Simplify  2.1.1 Data Types Use the simplest data type reasonable. A simpler data type is less likely contain unintended values. As we have seen, a string variable called gender can...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 2 Coding Principles | Collaborative Data Science Practices">
+<meta name="twitter:description" content="2.1 Simplify  2.1.1 Data Types Use the simplest data type reasonable. A simpler data type is less likely contain unintended values. As we have seen, a string variable called gender can...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Collaborative Data Science Practices</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="active" href="coding.html"><span class="header-section-number">2</span> Coding Principles</a></li>
+<li><a class="" href="architecture.html"><span class="header-section-number">3</span> Architecture Principles</a></li>
+<li><a class="" href="file-prototype-r.html"><span class="header-section-number">4</span> Prototypical R File</a></li>
+<li><a class="" href="file-prototype-sql.html"><span class="header-section-number">5</span> Prototypical SQL File</a></li>
+<li><a class="" href="repo-prototype.html"><span class="header-section-number">6</span> Prototypical Repository</a></li>
+<li><a class="" href="rest.html"><span class="header-section-number">7</span> Data at Rest</a></li>
+<li><a class="" href="patterns.html"><span class="header-section-number">8</span> Patterns</a></li>
+<li><a class="" href="security.html"><span class="header-section-number">9</span> Security &amp; Private Data</a></li>
+<li><a class="" href="automation.html"><span class="header-section-number">10</span> Automation &amp; Reproducibility</a></li>
+<li><a class="" href="scaling-up.html"><span class="header-section-number">11</span> Scaling Up</a></li>
+<li><a class="" href="collaboration.html"><span class="header-section-number">12</span> Parallel Collaboration</a></li>
+<li><a class="" href="document.html"><span class="header-section-number">13</span> Documentation</a></li>
+<li><a class="" href="style.html"><span class="header-section-number">14</span> Style Guide</a></li>
+<li><a class="" href="publication.html"><span class="header-section-number">15</span> Publishing Results</a></li>
+<li><a class="" href="testing-and-validation.html"><span class="header-section-number">16</span> Testing, Validation, &amp; Defensive Programming</a></li>
+<li><a class="" href="troubleshooting.html"><span class="header-section-number">17</span> Troubleshooting and Debugging</a></li>
+<li><a class="" href="workstation.html"><span class="header-section-number">18</span> Workstation</a></li>
+<li><a class="" href="tools.html"><span class="header-section-number">19</span> Considerations when Selecting Tools</a></li>
+<li><a class="" href="team.html"><span class="header-section-number">20</span> Growing a Team</a></li>
+<li><a class="" href="redcap-user.html"><span class="header-section-number">21</span> Material for REDCap Users</a></li>
+<li><a class="" href="redcap-developer.html"><span class="header-section-number">22</span> Material for REDCap Developers</a></li>
+<li><a class="" href="redcap-admin.html"><span class="header-section-number">23</span> Material for REDCap Admins</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="git.html"><span class="header-section-number">A</span> Git &amp; GitHub</a></li>
+<li><a class="" href="snippets.html"><span class="header-section-number">B</span> Snippets</a></li>
+<li><a class="" href="presentations.html"><span class="header-section-number">C</span> Presentations</a></li>
+<li><a class="" href="scratch-pad.html"><span class="header-section-number">D</span> Scratch Pad of Loose Ideas</a></li>
+<li><a class="" href="example-dashboard.html"><span class="header-section-number">E</span> Example Dashboard</a></li>
+<li><a class="" href="example-chapter.html"><span class="header-section-number">F</span> Example Chapter</a></li>
+<li><a class="" href="acknowledgements.html"><span class="header-section-number">G</span> Acknowledgements</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">H</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/OuhscBbmc/data-science-practices-1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="coding" class="section level1">
+<h1>
+<span class="header-section-number">2</span> Coding Principles<a class="anchor" aria-label="anchor" href="#coding"><i class="fas fa-link"></i></a>
+</h1>
+<div id="coding-simplify" class="section level2">
+<h2>
+<span class="header-section-number">2.1</span> Simplify<a class="anchor" aria-label="anchor" href="#coding-simplify"><i class="fas fa-link"></i></a>
+</h2>
+<div id="coding-simplify-types" class="section level3">
+<h3>
+<span class="header-section-number">2.1.1</span> Data Types<a class="anchor" aria-label="anchor" href="#coding-simplify-types"><i class="fas fa-link"></i></a>
+</h3>
+<p>Use the simplest data type reasonable. A simpler data type is less likely contain unintended values. As we have seen, a string variable called <code>gender</code> can simultaneously contain the values “m”, “f”, “F”, “Female”, “MALE”, “0”, “1”, “2”, “Latino”, "", and <code>NA</code>. On the other hand, a boolean variable <code>gender_male</code> can be only <code>FALSE</code>, <code>TRUE</code>, and <code>NA</code>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The equivalent of R’s &lt;code&gt;logical&lt;/code&gt; data type is called a &lt;code&gt;bit&lt;/code&gt; in &lt;a href="https://docs.microsoft.com/en-us/sql/t-sql/data-types/bit-transact-sql"&gt;SQL Server&lt;/a&gt;, and a &lt;code&gt;boolean&lt;/code&gt; in &lt;a href="https://www.postgresql.org/docs/current/datatype-boolean.html"&gt;Postgres&lt;/a&gt; and &lt;a href="https://dev.mysql.com/doc/refman/8.0/en/boolean-literals.html"&gt;MySQL&lt;/a&gt;. SQLite’s &lt;code&gt;integer&lt;/code&gt; is best alternative for boolean variables.&lt;/p&gt;'><sup>1</sup></a></p>
+<p><a href="https://www.sqlite.org/datatype3.html">SQLite</a> does not have a dedicated datatype, so you must resort to storing it as <code>0</code>, <code>1</code> and <code>NULL</code> values. Because a caller can’t assume that an ostensible boolean SQLite variable contains only those three values, the variable should be checked.</p>
+<p>Once you have cleaned a variable in your initial ETL files (like an <a href="https://ouhscbbmc.github.io/data-science-practices-1/patterns.html#pattern-ellis">Ellis</a>), establish boundaries so you do not have to spend time in the downstream files verifying that no bad values have been introduced. As a small bonus, simpler data types are typically faster, consume less memory, and translate more cleanly across platforms.</p>
+<p>Within R, numeric-ish variables can be represented by the following four data types. Use the simplest type that adequately captures the information. <code>logical</code> is the simplest and <code>numeric</code> is the most flexible.</p>
+<ol style="list-style-type: decimal">
+<li>
+<code>logical</code>/boolean/bit,</li>
+<li>
+<code>integer</code>,</li>
+<li>
+<code>bit64::integer64</code>, and</li>
+<li>
+<code>numeric</code>/double-precision floats.</li>
+</ol>
+<p>Categorical variables have a similar spectrum. After <code>logical</code> types, <code>factor</code>s are more restrictive and less flexible than <code>character</code>s.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;In the database world, &lt;code&gt;character&lt;/code&gt; variables are typically represented by the &lt;code&gt;varchar&lt;/code&gt;; when setting the maximum length, consider padding with some extra character. If most of the entries are eight to ten characters, consider using &lt;code&gt;varchar(15)&lt;/code&gt;. Mimicking a &lt;code&gt;factor&lt;/code&gt; variable is more complicated. Factor levels are typically defined in a dedicated table (commonly called a lookup table), and then referenced with a foreign key relationship. In many circumstances saving an R factor to a database, we will use a simple &lt;code&gt;varchar&lt;/code&gt;.&lt;/p&gt;"><sup>2</sup></a></p>
+<ol style="list-style-type: decimal">
+<li>
+<code>logical</code>/boolean/bit,</li>
+<li>
+<code>factor</code>, and</li>
+<li>
+<code>character</code>.</li>
+</ol>
+</div>
+<div id="coding-simplify-categorical" class="section level3">
+<h3>
+<span class="header-section-number">2.1.2</span> Categorical Levels<a class="anchor" aria-label="anchor" href="#coding-simplify-categorical"><i class="fas fa-link"></i></a>
+</h3>
+<p>When a boolean variable would be too restrictive and a factor or character is required, choose the simplest representation. Where possible:</p>
+<ol style="list-style-type: decimal">
+<li>Use only lower case (<em>e.g.</em>, ‘male’ instead of ‘Male’ for the <code>gender</code> variable).</li>
+<li>avoid repeating the variable in the level (<em>e.g.</em>, ‘control’ instead of ‘control condition’ for the <code>condition</code> variable).</li>
+</ol>
+</div>
+<div id="coding-simplify-recoding" class="section level3">
+<h3>
+<span class="header-section-number">2.1.3</span> Recoding<a class="anchor" aria-label="anchor" href="#coding-simplify-recoding"><i class="fas fa-link"></i></a>
+</h3>
+<p>Almost every project recodes variables. Choose the simplest function possible. The functions at the top are easier to read and harder to mess up than the functions below it</p>
+<ol style="list-style-type: decimal">
+<li>
+<p><strong>Leverage existing booleans:</strong> Suppose you have the logical variable <code>gender_male</code> (which can be only <code>TRUE</code>, <code>FALSE</code>, or <code>NA</code>). Writing <code>gender_male == TRUE</code> or <code>gender_male == FALSE</code> will evaluate to a boolean –that’s unnecessary because <code>gender_male</code> is already a boolean.</p>
+<ol style="list-style-type: decimal">
+<li><p><em>Testing for <code>TRUE</code></em>: use the variable by itself (<em>i.e.</em>, <code>gender_male</code> instead of <code>gender_male == TRUE</code>).</p></li>
+<li><p><em>Testing for <code>FALSE</code></em>: use <code>!</code>. Write <code>!gender_male</code> instead of <code>gender_male == FALSE</code> or <code>gender_male != TRUE</code>.</p></li>
+</ol>
+</li>
+<li>
+<p><strong><a href="https://dplyr.tidyverse.org/reference/coalesce.html"><code>dplyr::coalesce()</code></a></strong>: The function evaluates a single variable and replaces <code>NA</code> with values from another variable.</p>
+<p>A coalesce like</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">visit_completed</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">coalesce</span><span class="op">(</span><span class="va">visit_completed</span>, <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p>is much easier to read and not mess up than</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">visit_completed</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">if_else</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">visit_completed</span><span class="op">)</span>, <span class="va">visit_completed</span>, <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</li>
+<li>
+<p><strong><a href="https://dplyr.tidyverse.org/reference/na_if.html"><code>dplyr::na_if()</code></a></strong> transforms a nonmissing value into an NA.</p>
+<p>Recoding missing values like</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">birth_apgar</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">na_if</span><span class="op">(</span><span class="va">birth_apgar</span>, <span class="fl">99</span><span class="op">)</span></code></pre></div>
+<p>is easier to read and not mess up than</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">birth_apgar</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">if_else</span><span class="op">(</span><span class="va">birth_apgar</span> <span class="op">==</span> <span class="fl">99</span>, <span class="cn">NA_real_</span>, <span class="va">birth_apgar</span><span class="op">)</span></code></pre></div>
+</li>
+<li>
+<p><strong><code>&lt;=</code></strong> (or a similar comparison operator): Compare two quantities to output a boolean variable. The parentheses are unnecessary, but can help readability. If either value is <code>NA</code>, then the result is <code>NA</code>.</p>
+<p>Notice that we prefer to order the variables like a number line. When the result is <code>TRUE</code>, the smaller value is to the left of the larger value.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dob_in_the_future</span>   <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span> <span class="op">&lt;</span> <span class="va">dob</span><span class="op">)</span>
+<span class="va">dod_follows_dob</span>     <span class="op">&lt;-</span> <span class="op">(</span><span class="va">dob</span> <span class="op">&lt;=</span> <span class="va">dod</span><span class="op">)</span>
+<span class="va">premature</span>           <span class="op">&lt;-</span> <span class="op">(</span><span class="va">gestation_weeks</span> <span class="op">&lt;</span> <span class="fl">37</span><span class="op">)</span>
+<span class="va">big_boy</span>             <span class="op">&lt;-</span> <span class="op">(</span><span class="va">threshold_in_kg</span> <span class="op">&lt;=</span> <span class="va">birth_weight_in_kg</span><span class="op">)</span></code></pre></div>
+</li>
+<li>
+<p><strong><a href="https://dplyr.tidyverse.org/reference/if_else.html"><code>dplyr::if_else()</code></a></strong>: The function evaluates a single boolean variable or expression. The output branches to only three possibilities: the input is (a) true, (b) false, or (c) (optionally) <code>NA</code>. Notice that unlike the <code>&lt;=</code> operator, <code>dplyr::if_else()</code> lets you specify a value if the input expression evaluates to <code>NA</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">date_start</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2017-01-01"</span><span class="op">)</span>
+
+<span class="co"># If a missing month element needs to be handled explicitly.</span>
+<span class="va">stage</span>       <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">if_else</span><span class="op">(</span><span class="va">date_start</span> <span class="op">&lt;=</span> <span class="va">month</span>, <span class="st">"post"</span>, <span class="st">"pre"</span>, missing <span class="op">=</span> <span class="st">"missing-month"</span><span class="op">)</span>
+
+<span class="co"># Otherwise a simple boolean output is sufficient.</span>
+<span class="va">stage_post</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="va">date_start</span> <span class="op">&lt;=</span> <span class="va">month</span><span class="op">)</span></code></pre></div>
+<p>If it is important that the reader understand that an input expression of <code>NA</code> will produce an NA, consider using <code>dplyr::if_else()</code>. Even though these two lines are equivalent, a casual reader may not consider that <code>stage_post</code> could be <code>NA</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">stage_post</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="va">date_start</span> <span class="op">&lt;=</span> <span class="va">month</span><span class="op">)</span>
+<span class="va">stage_post</span>  <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">if_else</span><span class="op">(</span><span class="va">date_start</span> <span class="op">&lt;=</span> <span class="va">month</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, missing <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></code></pre></div>
+</li>
+<li>
+<p><strong><a href="https://dplyr.tidyverse.org/reference/between.html"><code>dplyr::between()</code></a></strong>: The function evaluates a numeric <code>x</code> against a <code>left</code> and a <code>right</code> boundary to return a boolean value. The output is <code>TRUE</code> if <code>x</code> is inside the boundaries or equal to either boundary (<em>i.e.</em>, the boundaries are <em>in</em>clusive). The output is <code>FALSE</code> if <code>x</code> is outside either boundary.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">too_cold</span>      <span class="op">&lt;-</span> <span class="fl">60</span>
+<span class="va">too_hot</span>       <span class="op">&lt;-</span> <span class="fl">88</span>
+<span class="va">goldilocks_1</span>  <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">between</span><span class="op">(</span><span class="va">temperature</span>, <span class="va">too_cold</span>, <span class="va">too_hot</span><span class="op">)</span>
+
+<span class="co"># This is equivalent to the previous line.</span>
+<span class="va">goldilocks_2</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="va">too_cold</span> <span class="op">&lt;=</span> <span class="va">temperature</span> <span class="op">&amp;</span> <span class="va">temperature</span> <span class="op">&lt;=</span> <span class="va">too_hot</span><span class="op">)</span></code></pre></div>
+<p>If you need an <em>ex</em>clusive boundary, abandon <code>dplyr::between()</code> and specify it exactly.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Left boundary is exclusive</span>
+<span class="va">goldilocks_3</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="va">too_cold</span> <span class="op">&lt;</span> <span class="va">temperature</span> <span class="op">&amp;</span> <span class="va">temperature</span> <span class="op">&lt;=</span> <span class="va">too_hot</span><span class="op">)</span>
+
+<span class="co"># Both boundaries are exclusive</span>
+<span class="va">goldilocks_4</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="va">too_cold</span> <span class="op">&lt;</span> <span class="va">temperature</span> <span class="op">&amp;</span> <span class="va">temperature</span> <span class="op">&lt;</span>  <span class="va">too_hot</span><span class="op">)</span></code></pre></div>
+<p>If your code starts to nest <code>dplyr::between()</code> calls inside <code>dplyr::if_else()</code>, consider <code><a href="https://rdrr.io/r/base/cut.html">base::cut()</a></code>.</p>
+</li>
+<li>
+<p><strong><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/cut.html"><code>base::cut()</code></a></strong>: The function transforms a single numeric variable into a factor. Its range is cut into different segments/categories on the one-dimensional number line. The output branches to single discrete value (either a factor-level or an integer). Modify the <code>right</code> parameter to <code>FALSE</code> if you’d like the left/lower bound to be inclusive (which tends to be more natural for me).</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mtcars</span> |&gt; 
+  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> |&gt; 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">select</span><span class="op">(</span>
+    <span class="va">disp</span>,
+  <span class="op">)</span> |&gt; 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">mutate</span><span class="op">(</span>
+    <span class="co"># Example of a simple inequality operator (see two bullets above)</span>
+    muscle_car            <span class="op">=</span> <span class="op">(</span><span class="fl">300</span> <span class="op">&lt;=</span> <span class="va">disp</span><span class="op">)</span>,
+
+    <span class="co"># Divide `disp` into three levels.</span>
+    size_default_labels   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">disp</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">200</span>, <span class="fl">300</span>, <span class="cn">Inf</span><span class="op">)</span>, right <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>,
+
+    <span class="co"># Divide `disp` into three levels with custom labels.</span>
+    size_cut3             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span>
+      <span class="va">disp</span>, 
+      breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>,   <span class="fl">200</span>,      <span class="fl">300</span>,   <span class="cn">Inf</span><span class="op">)</span>,
+      labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>  <span class="st">"small"</span>, <span class="st">"medium"</span>, <span class="st">"big"</span><span class="op">)</span>,
+      right <span class="op">=</span> <span class="cn">FALSE</span>  <span class="co"># Is the right boundary INclusive ('FALSE' is an EXclusive boundary)</span>
+    <span class="op">)</span>,  
+
+    <span class="co"># Divide `disp` into five levels with custom labels.</span>
+    size_cut5             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span>
+      <span class="va">disp</span>, 
+      breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>,         <span class="fl">100</span>,            <span class="fl">150</span>,            <span class="fl">200</span>,      <span class="fl">300</span>,   <span class="cn">Inf</span><span class="op">)</span>,
+      labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>  <span class="st">"small small"</span>, <span class="st">"medium small"</span>, <span class="st">"biggie small"</span>, <span class="st">"medium"</span>, <span class="st">"big"</span><span class="op">)</span>,
+      right <span class="op">=</span> <span class="cn">FALSE</span>
+    <span class="op">)</span>,
+  <span class="op">)</span></code></pre></div>
+</li>
+<li>
+<p><strong><a href="https://dplyr.tidyverse.org/reference/recode.html"><code>dplyr::recode()</code></a></strong>: The function accepts an integer or character variable. The output branches to a single discrete value. This example maps integers to strings.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># https://www.census.gov/quickfacts/fact/note/US/RHI625219</span>
+<span class="va">race_id</span>        <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">1L</span>, <span class="fl">4L</span>, <span class="fl">3L</span>, <span class="fl">4L</span>, <span class="fl">2L</span>, <span class="cn">NA_integer_</span><span class="op">)</span>
+<span class="va">race_id_spouse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">3L</span>, <span class="fl">3L</span>, <span class="fl">4L</span>, <span class="fl">5L</span>, <span class="cn">NA_integer_</span><span class="op">)</span>
+<span class="va">race</span> <span class="op">&lt;-</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">recode</span><span class="op">(</span>
+    <span class="va">race_id</span>,
+    <span class="st">"1"</span>      <span class="op">=</span> <span class="st">"White"</span>,
+    <span class="st">"2"</span>      <span class="op">=</span> <span class="st">"Black or African American"</span>,
+    <span class="st">"3"</span>      <span class="op">=</span> <span class="st">"American Indian and Alaska Native"</span>,
+    <span class="st">"4"</span>      <span class="op">=</span> <span class="st">"Asian"</span>,
+    <span class="st">"5"</span>      <span class="op">=</span> <span class="st">"Native Hawaiian or Other Pacific Islander"</span>,
+    .missing <span class="op">=</span> <span class="st">"Unknown"</span>
+  <span class="op">)</span></code></pre></div>
+<p>If multiple variables have the same mapping, define the mapping once in a named vector, and pass it for multiple calls to <code>dplyr::recode()</code>. Notice that the two variables <code>race</code> and <code>race_spouse</code> use the same mapping.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;For now, employ the &lt;code&gt;!!!&lt;/code&gt; operator without understanding it. When you’re more comfortable with R, read about &lt;a href="https://adv-r.hadley.nz/quasiquotation.html#unquoting-many-arguments"&gt;quosures and lazy evaluation&lt;/a&gt; so you can use it in more general scenarios.&lt;/p&gt;'><sup>3</sup></a></p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mapping_race</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+  <span class="st">"1"</span> <span class="op">=</span> <span class="st">"White"</span>,
+  <span class="st">"2"</span> <span class="op">=</span> <span class="st">"Black or African American"</span>,
+  <span class="st">"3"</span> <span class="op">=</span> <span class="st">"American Indian and Alaska Native"</span>,
+  <span class="st">"4"</span> <span class="op">=</span> <span class="st">"Asian"</span>,
+  <span class="st">"5"</span> <span class="op">=</span> <span class="st">"Native Hawaiian or Other Pacific Islander"</span>
+<span class="op">)</span>
+<span class="va">race</span> <span class="op">&lt;-</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">recode</span><span class="op">(</span>
+    <span class="va">race_id</span>,
+    <span class="op">!</span><span class="op">!</span><span class="op">!</span><span class="va">mapping_race</span>,
+    .missing <span class="op">=</span> <span class="st">"Unknown"</span>
+  <span class="op">)</span>
+<span class="va">race_spouse</span> <span class="op">&lt;-</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">recode</span><span class="op">(</span>
+    <span class="va">race_id_spouse</span>,
+    <span class="op">!</span><span class="op">!</span><span class="op">!</span><span class="va">mapping_race</span>,
+    .missing <span class="op">=</span> <span class="st">"Unknown"</span>
+  <span class="op">)</span></code></pre></div>
+<p>Tips for <code>dplyr::recode()</code>:</p>
+<ul>
+<li>A reusable dedicated mapping vector is very useful for surveys with 10+ Likert items with consistent levels like “disagree”, “neutral”, “agree”.</li>
+<li>Use <a href="https://dplyr.tidyverse.org/reference/recode.html"><code>dplyr::recode_factor()</code></a> to map integers to factor levels.<br>
+</li>
+<li>
+<a href="https://forcats.tidyverse.org/reference/fct_recode.html"><code>forcats::fct_recode()</code></a> is similar. We prefer the <code>.missing</code> parameter of <code>dplyr::recode()</code> that translates an <code>NA</code> into an explicit value.</li>
+<li>When using the <a href="https://ouhscbbmc.github.io/REDCapR/">REDCap API</a>, these functions help convert radio buttons to a character or factor variable.</li>
+</ul>
+</li>
+<li><p><strong>lookup table</strong>: It is feasible to recode 6 levels of race directly in R, but it’s less feasible to recode 200 provider names. Specify the mapping in a csv, then use <a href="https://readr.tidyverse.org/reference/read_delim.html">readr</a> to convert the csv to a data.frame, and finally <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left join</a> it.</p></li>
+<li><p><strong><a href="https://dplyr.tidyverse.org/reference/case_when.html"><code>dplyr::case_when()</code></a></strong>: The function is the most complicated because it can evaluate multiple input variables. Also, multiple cases can be true, but only the first output is returned. This ‘water fall’ execution helps in complicated scenarios, but is overkill for most.</p></li>
+</ol>
+</div>
+</div>
+<div id="coding-defensive" class="section level2">
+<h2>
+<span class="header-section-number">2.2</span> Defensive Style<a class="anchor" aria-label="anchor" href="#coding-defensive"><i class="fas fa-link"></i></a>
+</h2>
+<div id="coding-defensive-qualify-functions" class="section level3">
+<h3>
+<span class="header-section-number">2.2.1</span> Qualify functions<a class="anchor" aria-label="anchor" href="#coding-defensive-qualify-functions"><i class="fas fa-link"></i></a>
+</h3>
+<p>Try to prepend each function with its package. Write <code>dplyr::filter()</code> instead of <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>. When two packages contain public functions with the same name, the package that was most recently called with <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> takes precedent. When multiple R files are executed, the packages’ precedents may not be predictable. Specifying the package eliminates the ambiguity, while also making the code easier to follow. For this reason, we recommend that almost all R files contain a <a href="file-prototype-r.html#chunk-load-packages">‘load-packages’</a> chunk.</p>
+<p>See the <a href="https://google.github.io/styleguide/Rguide.html#qualifying-namespaces">Google Style Guide</a> for more about qualifying functions.</p>
+<p>Some exceptions exist, including:</p>
+<ul>
+<li>The <a href="https://r-spatial.github.io/sf/">sf</a> package if you’re using its objects <a href="https://r-spatial.github.io/sf/articles/sf6.html#why-do-dplyr-verbs-not-work-for-sf-objects">with dplyr verbs</a>.</li>
+</ul>
+</div>
+<div id="coding-defensive-date-arithmetic" class="section level3">
+<h3>
+<span class="header-section-number">2.2.2</span> Date Arithmetic<a class="anchor" aria-label="anchor" href="#coding-defensive-date-arithmetic"><i class="fas fa-link"></i></a>
+</h3>
+<p>Don’t use the minus operator (<em>i.e.</em>, <code>-</code>) to subtract dates. Instead use <code>as.integer(difftime(stop, start, units="days"))</code>. It’s longer but protects from the scenario that <code>start</code> or <code>stop</code> are changed upstream from a date to a datetime. In that case, <code>stop - start</code> returns the number of <em>seconds</em> between the two points, not the number of <em>days</em>.</p>
+</div>
+<div id="excluding-bad-cases" class="section level3">
+<h3>
+<span class="header-section-number">2.2.3</span> Excluding Bad Cases<a class="anchor" aria-label="anchor" href="#excluding-bad-cases"><i class="fas fa-link"></i></a>
+</h3>
+<p>Some variables are critical to the record, and if it’s missing, you don’t want or trust any of its other values. For instance, a hospital visit record rarely useful if missing the patient ID. In these cases, prevent the record from passing through the <a href="patterns.html#pattern-ellis">ellis</a>.</p>
+<p>In this example, we’ll presume we cannot trust a patient record if it lacks a clean date of birth (<code>dob</code>).</p>
+<ol style="list-style-type: decimal">
+<li>
+<p>Define the permissible range, in either the ellis’s <a href="file-prototype-r.html#chunk-declare">declare-globals</a> chunk, or in the <a href="repo-prototype.html#repo-config">config-file</a>. (We’ll use the config file for this example.) We’ll exclude anyone born before 2000, or after tomorrow. Even though it’s illogical for someone in a retrospective record to be born tomorrow, consider bending a little for small errors.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb13-1"><a href="coding.html#cb13-1"></a><span class="fu">range_dob   </span><span class="kw">:</span><span class="at"> !expr c(as.Date("2000-01-01"), Sys.Date() + lubridate::days(1))</span></span></code></pre></div>
+</li>
+<li>
+<p>In the <a href="file-prototype-r.html#chunk-tweak-data">tweak-data</a> chunk, use <a href="https://ouhscbbmc.github.io/OuhscMunge/reference/trim.html"><code>OuhscMunge::trim_date()</code></a> to set the cell to <code>NA</code> if it falls outside an acceptable range. After <a href="https://dplyr.tidyverse.org/reference/mutate.html"><code>dplyr::mutate()</code></a>, call <a href="https://tidyr.tidyverse.org/reference/drop_na.html"><code>tidyr::drop_na()</code></a> to exclude the entire record, regardless if (a) it was already <code>NA</code>, or (b) was “trimmed” to <code>NA</code>.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ds</span> <span class="op">&lt;-</span>
+  <span class="va">ds</span> |&gt;
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">mutate</span><span class="op">(</span>
+    dob <span class="op">=</span> <span class="fu">OuhscMunge</span><span class="fu">::</span><span class="fu">trim_date</span><span class="op">(</span><span class="va">dob</span>, <span class="va">config</span><span class="op">$</span><span class="va">range_dob</span><span class="op">)</span>
+  <span class="op">)</span> |&gt;
+  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu">drop_na</span><span class="op">(</span><span class="va">dob</span><span class="op">)</span></code></pre></div>
+</li>
+<li>
+<p>Near the end of the file, verify the variable for three reasons: (a) there’s a chance that the code above isn’t working as expected, (b) some later code later might have introduced bad values, and (c) it clearly documents to a reader that <code>dob</code> was included in this range at this stage of the pipeline.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">checkmate</span><span class="fu">::</span><span class="fu">assert_date</span><span class="op">(</span><span class="va">ds</span><span class="op">$</span><span class="va">dob</span>, any.missing<span class="op">=</span><span class="cn">F</span>, lower<span class="op">=</span><span class="va">config</span><span class="op">$</span><span class="va">range_dob</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, upper<span class="op">=</span><span class="va">config</span><span class="op">$</span><span class="va">range_dob</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html"><span class="header-section-number">1</span> Introduction</a></div>
+<div class="next"><a href="architecture.html"><span class="header-section-number">3</span> Architecture Principles</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#coding"><span class="header-section-number">2</span> Coding Principles</a></li>
+<li>
+<a class="nav-link" href="#coding-simplify"><span class="header-section-number">2.1</span> Simplify</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#coding-simplify-types"><span class="header-section-number">2.1.1</span> Data Types</a></li>
+<li><a class="nav-link" href="#coding-simplify-categorical"><span class="header-section-number">2.1.2</span> Categorical Levels</a></li>
+<li><a class="nav-link" href="#coding-simplify-recoding"><span class="header-section-number">2.1.3</span> Recoding</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#coding-defensive"><span class="header-section-number">2.2</span> Defensive Style</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#coding-defensive-qualify-functions"><span class="header-section-number">2.2.1</span> Qualify functions</a></li>
+<li><a class="nav-link" href="#coding-defensive-date-arithmetic"><span class="header-section-number">2.2.2</span> Date Arithmetic</a></li>
+<li><a class="nav-link" href="#excluding-bad-cases"><span class="header-section-number">2.2.3</span> Excluding Bad Cases</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/OuhscBbmc/data-science-practices-1/blob/main/ch-coding.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/OuhscBbmc/data-science-practices-1/edit/main/ch-coding.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Collaborative Data Science Practices</strong>" was written by Will Beasley. It was last built on 2022-02-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

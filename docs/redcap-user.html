@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 21 Material for REDCap Users | Collaborative Data Science Practices</title>
+<meta name="author" content="Will Beasley">
+<meta name="description" content="21.1 Login   21.2 Developing Reports Please first read Login">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 21 Material for REDCap Users | Collaborative Data Science Practices">
+<meta property="og:type" content="book">
+<meta property="og:description" content="21.1 Login   21.2 Developing Reports Please first read Login">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 21 Material for REDCap Users | Collaborative Data Science Practices">
+<meta name="twitter:description" content="21.1 Login   21.2 Developing Reports Please first read Login">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Collaborative Data Science Practices</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="coding.html"><span class="header-section-number">2</span> Coding Principles</a></li>
+<li><a class="" href="architecture.html"><span class="header-section-number">3</span> Architecture Principles</a></li>
+<li><a class="" href="file-prototype-r.html"><span class="header-section-number">4</span> Prototypical R File</a></li>
+<li><a class="" href="file-prototype-sql.html"><span class="header-section-number">5</span> Prototypical SQL File</a></li>
+<li><a class="" href="repo-prototype.html"><span class="header-section-number">6</span> Prototypical Repository</a></li>
+<li><a class="" href="rest.html"><span class="header-section-number">7</span> Data at Rest</a></li>
+<li><a class="" href="patterns.html"><span class="header-section-number">8</span> Patterns</a></li>
+<li><a class="" href="security.html"><span class="header-section-number">9</span> Security &amp; Private Data</a></li>
+<li><a class="" href="automation.html"><span class="header-section-number">10</span> Automation &amp; Reproducibility</a></li>
+<li><a class="" href="scaling-up.html"><span class="header-section-number">11</span> Scaling Up</a></li>
+<li><a class="" href="collaboration.html"><span class="header-section-number">12</span> Parallel Collaboration</a></li>
+<li><a class="" href="document.html"><span class="header-section-number">13</span> Documentation</a></li>
+<li><a class="" href="style.html"><span class="header-section-number">14</span> Style Guide</a></li>
+<li><a class="" href="publication.html"><span class="header-section-number">15</span> Publishing Results</a></li>
+<li><a class="" href="testing-and-validation.html"><span class="header-section-number">16</span> Testing, Validation, &amp; Defensive Programming</a></li>
+<li><a class="" href="troubleshooting.html"><span class="header-section-number">17</span> Troubleshooting and Debugging</a></li>
+<li><a class="" href="workstation.html"><span class="header-section-number">18</span> Workstation</a></li>
+<li><a class="" href="tools.html"><span class="header-section-number">19</span> Considerations when Selecting Tools</a></li>
+<li><a class="" href="team.html"><span class="header-section-number">20</span> Growing a Team</a></li>
+<li><a class="active" href="redcap-user.html"><span class="header-section-number">21</span> Material for REDCap Users</a></li>
+<li><a class="" href="redcap-developer.html"><span class="header-section-number">22</span> Material for REDCap Developers</a></li>
+<li><a class="" href="redcap-admin.html"><span class="header-section-number">23</span> Material for REDCap Admins</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="git.html"><span class="header-section-number">A</span> Git &amp; GitHub</a></li>
+<li><a class="" href="snippets.html"><span class="header-section-number">B</span> Snippets</a></li>
+<li><a class="" href="presentations.html"><span class="header-section-number">C</span> Presentations</a></li>
+<li><a class="" href="scratch-pad.html"><span class="header-section-number">D</span> Scratch Pad of Loose Ideas</a></li>
+<li><a class="" href="example-dashboard.html"><span class="header-section-number">E</span> Example Dashboard</a></li>
+<li><a class="" href="example-chapter.html"><span class="header-section-number">F</span> Example Chapter</a></li>
+<li><a class="" href="acknowledgements.html"><span class="header-section-number">G</span> Acknowledgements</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">H</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/OuhscBbmc/data-science-practices-1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="redcap-user" class="section level1">
+<h1>
+<span class="header-section-number">21</span> Material for REDCap Users<a class="anchor" aria-label="anchor" href="#redcap-user"><i class="fas fa-link"></i></a>
+</h1>
+<div id="redcap-user-login" class="section level2">
+<h2>
+<span class="header-section-number">21.1</span> Login<a class="anchor" aria-label="anchor" href="#redcap-user-login"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="redcap-user-report-develop" class="section level2">
+<h2>
+<span class="header-section-number">21.2</span> Developing Reports<a class="anchor" aria-label="anchor" href="#redcap-user-report-develop"><i class="fas fa-link"></i></a>
+</h2>
+<p>Please first read <a href="redcap-user.html#redcap-user-login">Login</a></p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="team.html"><span class="header-section-number">20</span> Growing a Team</a></div>
+<div class="next"><a href="redcap-developer.html"><span class="header-section-number">22</span> Material for REDCap Developers</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#redcap-user"><span class="header-section-number">21</span> Material for REDCap Users</a></li>
+<li><a class="nav-link" href="#redcap-user-login"><span class="header-section-number">21.1</span> Login</a></li>
+<li><a class="nav-link" href="#redcap-user-report-develop"><span class="header-section-number">21.2</span> Developing Reports</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/OuhscBbmc/data-science-practices-1/blob/main/ch-redcap-user.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/OuhscBbmc/data-science-practices-1/edit/main/ch-redcap-user.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Collaborative Data Science Practices</strong>" was written by Will Beasley. It was last built on 2022-02-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

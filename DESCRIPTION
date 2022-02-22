@@ -1,0 +1,22 @@
+Type: Book
+Package: collaborativedatascience
+Title: Collaborative Data Science Practices
+Version: 1.0.1
+Authors@R: c(
+    person("Will", "Beasley", role = c("aut", "cre"), email =
+    "wibeasley@hotmail.com", comment = c(ORCID = "0000-0002-5613-5006"))
+    )
+Imports:
+    bookdown,
+    bslib,
+    downlit,
+    kableExtra,
+    pagedown,
+    pdftools,
+    printr,
+    rmarkdown,
+    tikzDevice,
+    tinytex,
+    withr
+Encoding: UTF-8
+Language: en-US

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>D Scratch Pad of Loose Ideas | Collaborative Data Science Practices</title>
+<meta name="author" content="Will Beasley">
+<meta name="description" content="D.1 Chapters &amp; Sections to Form  Tools to Consider tidyverse odbc  ggplot2 use factors for explanatory variables when you want to keep the order consistent across graphs. (genevamarshall) ...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="D Scratch Pad of Loose Ideas | Collaborative Data Science Practices">
+<meta property="og:type" content="book">
+<meta property="og:description" content="D.1 Chapters &amp; Sections to Form  Tools to Consider tidyverse odbc  ggplot2 use factors for explanatory variables when you want to keep the order consistent across graphs. (genevamarshall) ...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="D Scratch Pad of Loose Ideas | Collaborative Data Science Practices">
+<meta name="twitter:description" content="D.1 Chapters &amp; Sections to Form  Tools to Consider tidyverse odbc  ggplot2 use factors for explanatory variables when you want to keep the order consistent across graphs. (genevamarshall) ...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Collaborative Data Science Practices</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="coding.html"><span class="header-section-number">2</span> Coding Principles</a></li>
+<li><a class="" href="architecture.html"><span class="header-section-number">3</span> Architecture Principles</a></li>
+<li><a class="" href="file-prototype-r.html"><span class="header-section-number">4</span> Prototypical R File</a></li>
+<li><a class="" href="file-prototype-sql.html"><span class="header-section-number">5</span> Prototypical SQL File</a></li>
+<li><a class="" href="repo-prototype.html"><span class="header-section-number">6</span> Prototypical Repository</a></li>
+<li><a class="" href="rest.html"><span class="header-section-number">7</span> Data at Rest</a></li>
+<li><a class="" href="patterns.html"><span class="header-section-number">8</span> Patterns</a></li>
+<li><a class="" href="security.html"><span class="header-section-number">9</span> Security &amp; Private Data</a></li>
+<li><a class="" href="automation.html"><span class="header-section-number">10</span> Automation &amp; Reproducibility</a></li>
+<li><a class="" href="scaling-up.html"><span class="header-section-number">11</span> Scaling Up</a></li>
+<li><a class="" href="collaboration.html"><span class="header-section-number">12</span> Parallel Collaboration</a></li>
+<li><a class="" href="document.html"><span class="header-section-number">13</span> Documentation</a></li>
+<li><a class="" href="style.html"><span class="header-section-number">14</span> Style Guide</a></li>
+<li><a class="" href="publication.html"><span class="header-section-number">15</span> Publishing Results</a></li>
+<li><a class="" href="testing-and-validation.html"><span class="header-section-number">16</span> Testing, Validation, &amp; Defensive Programming</a></li>
+<li><a class="" href="troubleshooting.html"><span class="header-section-number">17</span> Troubleshooting and Debugging</a></li>
+<li><a class="" href="workstation.html"><span class="header-section-number">18</span> Workstation</a></li>
+<li><a class="" href="tools.html"><span class="header-section-number">19</span> Considerations when Selecting Tools</a></li>
+<li><a class="" href="team.html"><span class="header-section-number">20</span> Growing a Team</a></li>
+<li><a class="" href="redcap-user.html"><span class="header-section-number">21</span> Material for REDCap Users</a></li>
+<li><a class="" href="redcap-developer.html"><span class="header-section-number">22</span> Material for REDCap Developers</a></li>
+<li><a class="" href="redcap-admin.html"><span class="header-section-number">23</span> Material for REDCap Admins</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="git.html"><span class="header-section-number">A</span> Git &amp; GitHub</a></li>
+<li><a class="" href="snippets.html"><span class="header-section-number">B</span> Snippets</a></li>
+<li><a class="" href="presentations.html"><span class="header-section-number">C</span> Presentations</a></li>
+<li><a class="active" href="scratch-pad.html"><span class="header-section-number">D</span> Scratch Pad of Loose Ideas</a></li>
+<li><a class="" href="example-dashboard.html"><span class="header-section-number">E</span> Example Dashboard</a></li>
+<li><a class="" href="example-chapter.html"><span class="header-section-number">F</span> Example Chapter</a></li>
+<li><a class="" href="acknowledgements.html"><span class="header-section-number">G</span> Acknowledgements</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">H</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/OuhscBbmc/data-science-practices-1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="scratch-pad" class="section level1">
+<h1>
+<span class="header-section-number">D</span> Scratch Pad of Loose Ideas<a class="anchor" aria-label="anchor" href="#scratch-pad"><i class="fas fa-link"></i></a>
+</h1>
+<div id="chapters-sections-to-form" class="section level2">
+<h2>
+<span class="header-section-number">D.1</span> Chapters &amp; Sections to Form<a class="anchor" aria-label="anchor" href="#chapters-sections-to-form"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>
+<p>Tools to Consider</p>
+<ol style="list-style-type: decimal">
+<li>tidyverse</li>
+<li>odbc</li>
+</ol>
+</li>
+<li>
+<p>ggplot2</p>
+<ol style="list-style-type: decimal">
+<li>use factors for explanatory variables when you want to keep the order consistent across graphs. (<a href="https://github.com/genevamarshall">genevamarshall</a>)</li>
+</ol>
+</li>
+<li>
+<p>automation on a remote server or VDI</p>
+<p>There’s always a chance that my machine is configured a little differently than yours, which may affect results. Will you glance at those results too? I forgot what this project is about, and I wouldn’t be able to spot problems like you can. The S drive file and the tables don’t seem to have any obvious problems</p>
+</li>
+<li>
+<p>public reports (and dashboards)</p>
+<ol style="list-style-type: decimal">
+<li>when developing a report for a external audience (ie, people outside your immediate research team), choose one or two pals who are unfamiliar with your aims/methods as an impromptu focus group. Ask them what things need to be redesigned/reframed/reformated/further-explained. (<a href="https://github.com/genevamarshall">genevamarshall</a>)
+<ol style="list-style-type: decimal">
+<li>plots</li>
+<li>plot labels/axes</li>
+<li>variable names</li>
+<li>units of measurement (eg, proportion vs percentage on the <em>y</em> axis)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>documentation - bookdown</p>
+<blockquote>
+<p>Bookdown has worked well for us so far. It’s basically independent markdown documents stored on a dedicated git repo. Then you click “build” in RStudio and it converts all the markdown files to static html files. Because GitHub is essentially serving as the backend, everyone can make changes to sections and we don’t have to be too worried about</p>
+<p>Here’s a version that’s hosted publicly, but I tested that it can be hosted on our shared file server. (It’s possible because the html files are so static.) If this is what you guys want for OU’s collective CDW, please tell me:</p>
+<ul>
+<li>who you want to be able to edit the documents without review. I’ll add them to the GitHub repo.</li>
+<li>who you want to be able to view the documents. I’ll add them to a dedicate file server space.</li>
+</ul>
+<p><a href="https://ouhscbbmc.github.io/data-science-practices-1/workstation.html#installation-required" class="uri">https://ouhscbbmc.github.io/data-science-practices-1/workstation.html#installation-required</a></p>
+<p>I was thinking that each individual database gets it own chapter. The BBMC has ~4 databases in this sense: a Centricity staging database, a GECB staging database, the central warehouse, and the (fledgling) downstream OMOP database. Then there are ~3 sections within each chapter: (a) a black-and-white description of the tables, columns, &amp; indexes (written mostly for consumers), (b) recommendations how to use each table (written mostly for consumers), and (c) a description of the ETL process (written mostly for developers &amp; admins).</p>
+<p>My proposal uses GitHub and Markdown because they’re so universal (no knowledge of R is required –really you could write it with any text editor &amp; commit, and let someone else click “build” in RStudio on their machine). But I’m very flexible on all this. I’ll support &amp; contribute to any system that you guys feel will work well across the teams.</p>
+</blockquote>
+</li>
+<li>
+<p>developing packages</p>
+<ul>
+<li><p><a href="http://r-pkgs.had.co.nz/"><em>R packages</em></a> by Hadley Wickham</p></li>
+<li><p><a href="http://mangothecat.github.io/goodpractice/" class="uri">http://mangothecat.github.io/goodpractice/</a></p></li>
+</ul>
+</li>
+<li>
+<p>Cargo cult programming “is a style of computer programming characterized by the ritual inclusion of code or program structures that serve no real purpose.” (<a href="https://en.wikipedia.org/wiki/Cargo_cult_programming">Wikipedia</a>)</p>
+<p>Your team should decide which elements of <a href="https://ouhscbbmc.github.io/data-science-practices-1/file-prototype-r.html">a file prototype</a> and <a href="https://ouhscbbmc.github.io/data-science-practices-1/repo-prototype.html">repo prototype</a> are best for you.</p>
+</li>
+</ol>
+</div>
+<div id="practices" class="section level2">
+<h2>
+<span class="header-section-number">D.2</span> Practices<a class="anchor" aria-label="anchor" href="#practices"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> should have <code>add = TRUE</code> (<span class="citation">Wickham (<a href="references.html#ref-wickham-advanced-r" role="doc-biblioref">2019</a>)</span>, <a href="https://adv-r.hadley.nz/functions.html#on-exit">Exit handlers</a>).</li>
+</ul>
+</div>
+<div id="good-sites" class="section level2">
+<h2>
+<span class="header-section-number">D.3</span> Good Sites<a class="anchor" aria-label="anchor" href="#good-sites"><i class="fas fa-link"></i></a>
+</h2>
+<p>Posts on these sites are almost always worth your time reading. The frequently improve how you develop with the common components used in our data pipelines.</p>
+<ul>
+<li>
+<a href="https://yihui.org/en/">Yihui Xie</a>, created <a href="https://yihui.org/knitr/">knitr</a> and other important contributions to reproducible research.</li>
+<li>
+<a href="https://blog.rstudio.com/">RStudio</a>, in addition to their IDE, many of the packages used here were created by their developers.</li>
+<li>
+<a href="www.explainxkcd.com">Explain xkcd</a> because it’s good.</li>
+</ul>
+<p>Occasionally skim the titles on these sites and pick a few relevant to your interests. We think it helps keep you aware of developments in the field, so your skills continually grow and our approaches don’t become stagnant.</p>
+<ul>
+<li><a href="https://www.oreilly.com/topics/data-science">O’Reilly’s Data science ideas and resources</a></li>
+<li><a href="https://towardsdatascience.com/">Towards Data Science</a></li>
+</ul>
+<p>These books haven’t been referenced (yet), but have good guidance and could be worth your time skimming to see what is relevant.</p>
+<ul>
+<li><p><a href="http://tidynomicon.tech/"><em>The Tidynomicon</em></a> by Dhavide Aruliah &amp; Greg Wilson</p></li>
+<li><p><a href="https://bookdown.org/csgillespie/efficientR/"><em>Efficient R programming</em></a> by Colin Gillespie &amp; Robin Lovelace</p></li>
+<li><p><a href="https://bookdown.org/rdpeng/RProgDA/">Mastering Software Development in R</a></p></li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="presentations.html"><span class="header-section-number">C</span> Presentations</a></div>
+<div class="next"><a href="example-dashboard.html"><span class="header-section-number">E</span> Example Dashboard</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#scratch-pad"><span class="header-section-number">D</span> Scratch Pad of Loose Ideas</a></li>
+<li><a class="nav-link" href="#chapters-sections-to-form"><span class="header-section-number">D.1</span> Chapters &amp; Sections to Form</a></li>
+<li><a class="nav-link" href="#practices"><span class="header-section-number">D.2</span> Practices</a></li>
+<li><a class="nav-link" href="#good-sites"><span class="header-section-number">D.3</span> Good Sites</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/OuhscBbmc/data-science-practices-1/blob/main/ch-scratch-pad.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/OuhscBbmc/data-science-practices-1/edit/main/ch-scratch-pad.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Collaborative Data Science Practices</strong>" was written by Will Beasley. It was last built on 2022-02-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

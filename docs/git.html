@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>A Git &amp; GitHub | Collaborative Data Science Practices</title>
+<meta name="author" content="Will Beasley">
+<meta name="description" content="A.1 Justification (Written in 2017 to justify the service to a corporation’s IT department.) Git and GitHub are the de facto version control software and hosting solution for software development...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="A Git &amp; GitHub | Collaborative Data Science Practices">
+<meta property="og:type" content="book">
+<meta property="og:description" content="A.1 Justification (Written in 2017 to justify the service to a corporation’s IT department.) Git and GitHub are the de facto version control software and hosting solution for software development...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A Git &amp; GitHub | Collaborative Data Science Practices">
+<meta name="twitter:description" content="A.1 Justification (Written in 2017 to justify the service to a corporation’s IT department.) Git and GitHub are the de facto version control software and hosting solution for software development...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Collaborative Data Science Practices</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="coding.html"><span class="header-section-number">2</span> Coding Principles</a></li>
+<li><a class="" href="architecture.html"><span class="header-section-number">3</span> Architecture Principles</a></li>
+<li><a class="" href="file-prototype-r.html"><span class="header-section-number">4</span> Prototypical R File</a></li>
+<li><a class="" href="file-prototype-sql.html"><span class="header-section-number">5</span> Prototypical SQL File</a></li>
+<li><a class="" href="repo-prototype.html"><span class="header-section-number">6</span> Prototypical Repository</a></li>
+<li><a class="" href="rest.html"><span class="header-section-number">7</span> Data at Rest</a></li>
+<li><a class="" href="patterns.html"><span class="header-section-number">8</span> Patterns</a></li>
+<li><a class="" href="security.html"><span class="header-section-number">9</span> Security &amp; Private Data</a></li>
+<li><a class="" href="automation.html"><span class="header-section-number">10</span> Automation &amp; Reproducibility</a></li>
+<li><a class="" href="scaling-up.html"><span class="header-section-number">11</span> Scaling Up</a></li>
+<li><a class="" href="collaboration.html"><span class="header-section-number">12</span> Parallel Collaboration</a></li>
+<li><a class="" href="document.html"><span class="header-section-number">13</span> Documentation</a></li>
+<li><a class="" href="style.html"><span class="header-section-number">14</span> Style Guide</a></li>
+<li><a class="" href="publication.html"><span class="header-section-number">15</span> Publishing Results</a></li>
+<li><a class="" href="testing-and-validation.html"><span class="header-section-number">16</span> Testing, Validation, &amp; Defensive Programming</a></li>
+<li><a class="" href="troubleshooting.html"><span class="header-section-number">17</span> Troubleshooting and Debugging</a></li>
+<li><a class="" href="workstation.html"><span class="header-section-number">18</span> Workstation</a></li>
+<li><a class="" href="tools.html"><span class="header-section-number">19</span> Considerations when Selecting Tools</a></li>
+<li><a class="" href="team.html"><span class="header-section-number">20</span> Growing a Team</a></li>
+<li><a class="" href="redcap-user.html"><span class="header-section-number">21</span> Material for REDCap Users</a></li>
+<li><a class="" href="redcap-developer.html"><span class="header-section-number">22</span> Material for REDCap Developers</a></li>
+<li><a class="" href="redcap-admin.html"><span class="header-section-number">23</span> Material for REDCap Admins</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="active" href="git.html"><span class="header-section-number">A</span> Git &amp; GitHub</a></li>
+<li><a class="" href="snippets.html"><span class="header-section-number">B</span> Snippets</a></li>
+<li><a class="" href="presentations.html"><span class="header-section-number">C</span> Presentations</a></li>
+<li><a class="" href="scratch-pad.html"><span class="header-section-number">D</span> Scratch Pad of Loose Ideas</a></li>
+<li><a class="" href="example-dashboard.html"><span class="header-section-number">E</span> Example Dashboard</a></li>
+<li><a class="" href="example-chapter.html"><span class="header-section-number">F</span> Example Chapter</a></li>
+<li><a class="" href="acknowledgements.html"><span class="header-section-number">G</span> Acknowledgements</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">H</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/OuhscBbmc/data-science-practices-1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="git" class="section level1">
+<h1>
+<span class="header-section-number">A</span> Git &amp; GitHub<a class="anchor" aria-label="anchor" href="#git"><i class="fas fa-link"></i></a>
+</h1>
+<div id="git-justification" class="section level2">
+<h2>
+<span class="header-section-number">A.1</span> Justification<a class="anchor" aria-label="anchor" href="#git-justification"><i class="fas fa-link"></i></a>
+</h2>
+<p>(<em>Written in 2017 to justify the service to a corporation’s IT department.</em>)</p>
+<p>Git and GitHub are the de facto version control software and hosting solution for software development in modern data science. Using GitHub will help our group with three critical tasks: (a) developing our own software, (b) leveraging innovations of others, and (c) attracting top talent.</p>
+<p><strong>Developing Software</strong>: Version control is critical for developing quality software, especially when multiple data scientists are contributing to the same code bank. Among modern version control software, Git and GitHub are the most popular for new projects, especially among the talent pool that we recruit from. Compared to outdated approaches using conventional file-servers, version control substantially increases productivity. Analysts can develop code &amp; report in parallel, and then combine when their branch is mature. Additionally, all commits are saved indefinitely, allowing us to ‘turn back the clock’ are resurrect older code when necessary. It also allows us to organize and manage our proprietary code in a single (distributed) location.</p>
+<p>Given the needs of our small data science team, we believe that private GitHub repositories (secured with two-factor authentication) strike a nice balance between (a) security, (b) ease of use for developers, (c) ease of maintenance for administrators, and (d) cost.</p>
+<p><strong>Leveraging Innovation</strong>: Most cutting-edge data science algorithms are released on GitHub. These algorithms are not stand-alone software; instead they augment the statistical software, R, which has been approved by IT. Furthermore, GitHub.com hosts the documentation and user forums for most data science algorithms. Without access to this information, we are at greater risk of misunderstanding and misusing the routines, which could weaken the accuracy of the financial reports we produce.</p>
+<p><strong>Attracting Talent</strong>: As we compete for the top talent in the highly competitive field of data science, we want to provide access its standard tools. We do not want to send the message that our organization doesn’t value the advancements appreciated and employed by our competitors.</p>
+<p><strong>Alternatives</strong>: The GitHub approach described above is the most common, but is not the only approached endorsed by contemporary developers. Others include:</p>
+<ul>
+<li>GitHub Enterprise: hosting solution developed by GitHub, but hosted on a university-controlled VM.</li>
+<li>GitLab: A competitor to GitHub. GitLab uses Git, but has a different hosting options, both cloud and on-premisis.</li>
+<li>Mercurial: modern version control that is similar to Git. It has many of Git’s strengths and avoids many of the undesirable features of Subversion/SVN.</li>
+<li>Atlassian: A competitor to GitHub that focuses on businesses. Altassian/Bitbucket repositories can use Git or Mercurial. Like GitHub and GitLab, they offers different hosting options.</li>
+</ul>
+<p><strong>Resources</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>GitHub for Business</li>
+<li>Git for Teams</li>
+</ol>
+</div>
+<div id="git-code" class="section level2">
+<h2>
+<span class="header-section-number">A.2</span> for Code Development<a class="anchor" aria-label="anchor" href="#git-code"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="https://github.com/jennybc">Jenny Bryan</a> and <a href="https://github.com/jimhester">Jim Hester</a> have published a thorough description of using Git from a data scientist’s perspective (<a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a>), and we recommend following their guidance. It is consistent with our approach, with a few exceptions noted below. A complementary resource is <em><a href="https://smile.amazon.com/dp/1449302440">Team Geek</a></em>, which has insightful advice for the human and collaborative aspects of version control.</p>
+<p>Other Resources</p>
+<ol style="list-style-type: decimal">
+<li>
+<a href="https://blog.travis-ci.com/2019-05-30-setting-up-a-ci-cd-process-on-github">Setting up a CI/CD Process on GitHub with Travis CI</a>. Travis-CI blob from August 2019.</li>
+</ol>
+</div>
+<div id="git-collaboration" class="section level2">
+<h2>
+<span class="header-section-number">A.3</span> for Collaboration<a class="anchor" aria-label="anchor" href="#git-collaboration"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li><p>Somewhat separate from it’s version control capabilities, GitHub provides built-in tools for coordinating projects across people and time. This tools revolves around <a href="https://guides.github.com/features/issues/">GitHub Issues</a>, which allow teammates to</p></li>
+<li><p>track issues assigned to them and others</p></li>
+<li><p>search if other teammates have encountered similar problems that their facing now (<em>e.g.</em>, the new computer can’t install the <a href="https://CRAN.R-project.org/package=rJava">rJava</a> package).</p></li>
+</ol>
+<p>There’s nothing magical about GitHub issues, but if you don’t use them, consider using a similar or more capable tools like those offered by <a href="https://www.atlassian.com/">Atlassian</a>, <a href="https://asana.com/">Asana</a>, <a href="https://basecamp.com/">Basecamp</a>, and many others.</p>
+<p>Here are some tips from our experiences with projects involving between 2 and 10 statisticians are working with an upcoming deadline.</p>
+<ol style="list-style-type: decimal">
+<li><p>If you create an error that describes a problem blocking your progress, include both the raw text (<em>e.g.</em>, <code>error: JAVA_HOME cannot be determined from the Registry</code>) and possibly a screenshot. The text allows the problem to be more easily searched by people later; the screenshot usually provides extra context that allows other to understand the situation and help more quickly.</p></li>
+<li>
+<p>Include enough broad context and enough specific details that teammates can quickly understand the problem. Ideally they can even run your code and debug it. Good recommendations can be found in the Stack Overflow posts, <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example?rq=1">‘How to make a great R reproducible example’</a> and <a href="https://stackoverflow.com/help/how-to-ask">‘How do I ask a good question?’</a>. The issues don’t need to be as thorough, because your teammates start with more context than a Stack Overflow reader.</p>
+<p>We typically include</p>
+<ol style="list-style-type: decimal">
+<li><p>a description of the problem or fishy behavior.</p></li>
+<li><p>the exact error message (or a good description of the fishy behavior).</p></li>
+<li><p>a snippet of the 1-10 lines of code suspected of causing the problem.</p></li>
+<li><p>a link to the code’s file (and ideally the line number, such as <a href="https://github.com/OuhscBbmc/REDCapR/blob/master/R/redcap-version.R#L40"><code>https://github.com/OuhscBbmc/REDCapR/blob/master/R/redcap-version.R#L40</code></a>) so the reader can hop over to the entire file.</p></li>
+<li><p>references to similar GitHub Issues or Stack Overflow questions that could aid troubleshooting.</p></li>
+</ol>
+</li>
+</ol>
+<!-- Consider including good examples, like https://github.com/OuhscBbmc/miechv-3/issues/2073.  Probably shorten some for clarity. -->
+</div>
+<div id="git-stability" class="section level2">
+<h2>
+<span class="header-section-number">A.4</span> for Stability<a class="anchor" aria-label="anchor" href="#git-stability"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>
+<p>Review Git commits closely</p>
+<ol style="list-style-type: decimal">
+<li>No unintended functional difference (<em>e.g.</em>, <code>!match</code> accidentally changed to <code>match</code>).</li>
+<li>No PHI snuck in (<em>e.g.</em>, a patient ID used while isolating and debugging).</li>
+<li>The metadata format didn’t change (<em>e.g.</em>, Excel sometimes changes the string ‘010’ to the number ‘10’). See <a href="snippets.html#snippets-correspondence-excel">the appendix</a> for a longer discussion about the problems that Excel typically introduces.</li>
+</ol>
+</li>
+</ol>
+</div>
+<div id="organization-wide-defaults-and-practices" class="section level2">
+<h2>
+<span class="header-section-number">A.5</span> Organization-wide defaults and practices<a class="anchor" aria-label="anchor" href="#organization-wide-defaults-and-practices"><i class="fas fa-link"></i></a>
+</h2>
+<p>Our core-wide goal of being <a href="https://en.wikipedia.org/wiki/Secure_by_default">secure by default</a> applies to GitHub too. Some security measures have to be added explicitly (<em>e.g.</em>, <code>.gitignore</code> blocking common data files like <code>*.csv</code> &amp; <code>*.xlsx</code>), but these organization-wide settings make new repo more secure as soon as their initialized, even at the cost of accessibility.</p>
+<p><em>Defaults</em></p>
+<ol style="list-style-type: decimal">
+<li><p>Two-factor authentication <a href="https://help.github.com/articles/requiring-two-factor-authentication-in-your-organization/">is required</a> for all organization memebers and outside collaborators. See setting “Security” =&gt; “Two-factor authentication”</p></li>
+<li><p>Organization members are <a href="https://help.github.com/articles/repository-permission-levels-for-an-organization/#restricting-people-from-creating-repositories">restricted from creating repositories</a>. See setting “Member privileges” =&gt; “Repository creation”.</p></li>
+<li><p>Organization members have <a href="https://help.github.com/articles/repository-permission-levels-for-an-organization/#restricting-people-from-creating-repositories">zero permissions on new repositories</a>. See setting “Member privileges” =&gt; “Default repository permission”
+.</p></li>
+</ol>
+<p><em>Practices</em></p>
+<ol style="list-style-type: decimal">
+<li><p>Authorized teammates outside OUHSC are designated as <a href="https://help.github.com/articles/adding-outside-collaborators-to-repositories-in-your-organization/">outside collaborators</a>, instead of “members”.</p></li>
+<li><p>Only three people are <a href="https://help.github.com/articles/permission-levels-for-an-organization/">owners</a> of the GitHub organization. Everyone else must be explicitly added to each appropriate repository. Other important restrictions to members include (a) cannot add/delete/transfer (private or public) repositories and (b) cannot add/delete other members to organization.</p></li>
+<li><p>Every week, an owner (probably <span class="citation">(<span class="citeproc-not-found" data-reference-id="wibeasley"><strong>???</strong></span>)</span>) will review the <a href="https://github.com/organizations/OuhscBbmc/settings/audit-log">organization’s audit log</a> (which only owners can view).</p></li>
+<li>
+<p>Two or more owners must discuss and agree upon adding/modifying/deleting any extra entity added to our GitHub Organization, including</p>
+<ol style="list-style-type: decimal">
+<li>
+<a href="https://developer.github.com/webhooks/">webhooks</a>,</li>
+<li>
+<a href="https://help.github.com/articles/about-third-party-application-restrictions/">third-party applications</a>,</li>
+<li>
+<a href="https://developer.github.com/early-access/integrations/">installed integration</a>, and</li>
+<li>
+<a href="https://developer.github.com/v3/oauth/">OAuth applications</a>.</li>
+</ol>
+<p>Currently, the only approved entity is the <a href="https://codecov.io/">Codecov</a> integration, which helps us test our package code and quantify its coverage (“Improve code quality. Expose bugs and security vulnerabilities.”). Codecov must be explicitly turned on for each desired repository.</p>
+</li>
+</ol>
+</div>
+<div id="git-collaborators" class="section level2">
+<h2>
+<span class="header-section-number">A.6</span> for New Collaborators<a class="anchor" aria-label="anchor" href="#git-collaborators"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="git-contribution" class="section level2">
+<h2>
+<span class="header-section-number">A.7</span> Steps for Contributing to Repo<a class="anchor" aria-label="anchor" href="#git-contribution"><i class="fas fa-link"></i></a>
+</h2>
+<div id="git-contribution-regular" class="section level3">
+<h3>
+<span class="header-section-number">A.7.1</span> Regular Contributions<a class="anchor" aria-label="anchor" href="#git-contribution-regular"><i class="fas fa-link"></i></a>
+</h3>
+<div id="git-contribution-regular-pull" class="section level4">
+<h4>
+<span class="header-section-number">A.7.1.1</span> Keep your dev branch fresh<a class="anchor" aria-label="anchor" href="#git-contribution-regular-pull"><i class="fas fa-link"></i></a>
+</h4>
+<p>We recommend doing this at least every day you write code in a repo. Perhaps more frequently if a lot of developers are pushing code (<em>e.g.</em>, right before a reporting deadline).</p>
+<ol style="list-style-type: decimal">
+<li>Update master on your local machine (from the GitHub server)</li>
+<li>Merge master <em>into</em> your local dev branch</li>
+<li>Push your local dev branch to the GitHub server</li>
+</ol>
+</div>
+<div id="git-contribution-regular-push" class="section level4">
+<h4>
+<span class="header-section-number">A.7.1.2</span> Make your code contributions available to other analysts<a class="anchor" aria-label="anchor" href="#git-contribution-regular-push"><i class="fas fa-link"></i></a>
+</h4>
+<p>At least every few days, push your changes to the master branch so teammates can benefit from your work. Especially if you are improving the pipeline code (<em>e.g.</em> Ellises or REDCap Arches)</p>
+<ol style="list-style-type: decimal">
+<li>Make sure you dev branch is updated immediately before you create a <a href="">Pull Request</a>. Follow the <a href="git.html#git-contribution-regular-pull">steps above</a>.</li>
+<li>Verify the merged code still works as expected. In other words, make sure that when your new code is blended with the newest master code, nothing breaks. Depending on the repo, these steps might include
+<ol style="list-style-type: decimal">
+<li>
+<a href="https://support.rstudio.com/hc/en-us/articles/200486508-Building-Testing-and-Distributing-Packages">Build and Check</a> the repo (assuming the rep is also a package).</li>
+<li>Run any code that verify’s the basic functionality of the repo. (For example, our MIECHV team should run “high-school-funnel.R” and verify the assertions passed).</li>
+</ol>
+</li>
+<li>Commit changes in your dev branch and push to the GitHub server.</li>
+<li>Create a <a href="https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request">Pull Request</a> (otherwise known as a PR) and <a href="https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews">assign a reviewer</a>. (For example, developers in the MIECHV team are paired together to review each other’s code.)</li>
+<li>The reviewer will pull your dev branch on to their local machine and run the same checks and verification (that you did on the 2nd step above). This duplicate effort helps verify that your code likely works for everyone on their own machines.</li>
+<li>The reviewer then accepts the PR and the master branch now contains your changes and are available to teammates.</li>
+</ol>
+<hr>
+<p>{Transfer &amp; update the material from <a href="https://github.com/OuhscBbmc/BbmcResources/blob/master/instructions/github.md" class="uri">https://github.com/OuhscBbmc/BbmcResources/blob/master/instructions/github.md</a>}</p>
+
+</div>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="redcap-admin.html"><span class="header-section-number">23</span> Material for REDCap Admins</a></div>
+<div class="next"><a href="snippets.html"><span class="header-section-number">B</span> Snippets</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#git"><span class="header-section-number">A</span> Git &amp; GitHub</a></li>
+<li><a class="nav-link" href="#git-justification"><span class="header-section-number">A.1</span> Justification</a></li>
+<li><a class="nav-link" href="#git-code"><span class="header-section-number">A.2</span> for Code Development</a></li>
+<li><a class="nav-link" href="#git-collaboration"><span class="header-section-number">A.3</span> for Collaboration</a></li>
+<li><a class="nav-link" href="#git-stability"><span class="header-section-number">A.4</span> for Stability</a></li>
+<li><a class="nav-link" href="#organization-wide-defaults-and-practices"><span class="header-section-number">A.5</span> Organization-wide defaults and practices</a></li>
+<li><a class="nav-link" href="#git-collaborators"><span class="header-section-number">A.6</span> for New Collaborators</a></li>
+<li>
+<a class="nav-link" href="#git-contribution"><span class="header-section-number">A.7</span> Steps for Contributing to Repo</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#git-contribution-regular"><span class="header-section-number">A.7.1</span> Regular Contributions</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/OuhscBbmc/data-science-practices-1/blob/main/ch-git.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/OuhscBbmc/data-science-practices-1/edit/main/ch-git.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Collaborative Data Science Practices</strong>" was written by Will Beasley. It was last built on 2022-02-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 5 Prototypical SQL File | Collaborative Data Science Practices</title>
+<meta name="author" content="Will Beasley">
+<meta name="description" content="New data scientists typically import entire tables from a database into R, and then merge, filter, and groom the data.frames. A more efficient approach is to submit sql that executes on the...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 5 Prototypical SQL File | Collaborative Data Science Practices">
+<meta property="og:type" content="book">
+<meta property="og:description" content="New data scientists typically import entire tables from a database into R, and then merge, filter, and groom the data.frames. A more efficient approach is to submit sql that executes on the...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 5 Prototypical SQL File | Collaborative Data Science Practices">
+<meta name="twitter:description" content="New data scientists typically import entire tables from a database into R, and then merge, filter, and groom the data.frames. A more efficient approach is to submit sql that executes on the...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Collaborative Data Science Practices</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="coding.html"><span class="header-section-number">2</span> Coding Principles</a></li>
+<li><a class="" href="architecture.html"><span class="header-section-number">3</span> Architecture Principles</a></li>
+<li><a class="" href="file-prototype-r.html"><span class="header-section-number">4</span> Prototypical R File</a></li>
+<li><a class="active" href="file-prototype-sql.html"><span class="header-section-number">5</span> Prototypical SQL File</a></li>
+<li><a class="" href="repo-prototype.html"><span class="header-section-number">6</span> Prototypical Repository</a></li>
+<li><a class="" href="rest.html"><span class="header-section-number">7</span> Data at Rest</a></li>
+<li><a class="" href="patterns.html"><span class="header-section-number">8</span> Patterns</a></li>
+<li><a class="" href="security.html"><span class="header-section-number">9</span> Security &amp; Private Data</a></li>
+<li><a class="" href="automation.html"><span class="header-section-number">10</span> Automation &amp; Reproducibility</a></li>
+<li><a class="" href="scaling-up.html"><span class="header-section-number">11</span> Scaling Up</a></li>
+<li><a class="" href="collaboration.html"><span class="header-section-number">12</span> Parallel Collaboration</a></li>
+<li><a class="" href="document.html"><span class="header-section-number">13</span> Documentation</a></li>
+<li><a class="" href="style.html"><span class="header-section-number">14</span> Style Guide</a></li>
+<li><a class="" href="publication.html"><span class="header-section-number">15</span> Publishing Results</a></li>
+<li><a class="" href="testing-and-validation.html"><span class="header-section-number">16</span> Testing, Validation, &amp; Defensive Programming</a></li>
+<li><a class="" href="troubleshooting.html"><span class="header-section-number">17</span> Troubleshooting and Debugging</a></li>
+<li><a class="" href="workstation.html"><span class="header-section-number">18</span> Workstation</a></li>
+<li><a class="" href="tools.html"><span class="header-section-number">19</span> Considerations when Selecting Tools</a></li>
+<li><a class="" href="team.html"><span class="header-section-number">20</span> Growing a Team</a></li>
+<li><a class="" href="redcap-user.html"><span class="header-section-number">21</span> Material for REDCap Users</a></li>
+<li><a class="" href="redcap-developer.html"><span class="header-section-number">22</span> Material for REDCap Developers</a></li>
+<li><a class="" href="redcap-admin.html"><span class="header-section-number">23</span> Material for REDCap Admins</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="git.html"><span class="header-section-number">A</span> Git &amp; GitHub</a></li>
+<li><a class="" href="snippets.html"><span class="header-section-number">B</span> Snippets</a></li>
+<li><a class="" href="presentations.html"><span class="header-section-number">C</span> Presentations</a></li>
+<li><a class="" href="scratch-pad.html"><span class="header-section-number">D</span> Scratch Pad of Loose Ideas</a></li>
+<li><a class="" href="example-dashboard.html"><span class="header-section-number">E</span> Example Dashboard</a></li>
+<li><a class="" href="example-chapter.html"><span class="header-section-number">F</span> Example Chapter</a></li>
+<li><a class="" href="acknowledgements.html"><span class="header-section-number">G</span> Acknowledgements</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">H</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/OuhscBbmc/data-science-practices-1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="file-prototype-sql" class="section level1">
+<h1>
+<span class="header-section-number">5</span> Prototypical SQL File<a class="anchor" aria-label="anchor" href="#file-prototype-sql"><i class="fas fa-link"></i></a>
+</h1>
+<p>New data scientists typically import entire tables from a database into R, and then merge, filter, and groom the data.frames. A more efficient approach is to submit <a href="https://en.wikipedia.org/wiki/SQL">sql</a> that executes on the database and returns a more specialized dataset.</p>
+<p>This provides several advantages:</p>
+<ol style="list-style-type: decimal">
+<li>A database will be much more efficient when filtering and <a href="https://www.w3schools.com/sql/sql_join.asp">joining</a> tables than any programing language, such as R or Python. A well-designed database will have <a href="https://en.wikipedia.org/wiki/Database_index#:~:text=A%20database%20index%20is%20a,maintain%20the%20index%20data%20structure.">indexed columns</a> and other optimizations that surpass R and Python capabilities.</li>
+<li>A database handles datasets that are thousands of times larger than what R and Python can accommodate in RAM. For large datasets, database engines persist the data on a hard drive (instead of just RAM) and are optimized to read the necessary information into RAM the moment before it is needed, and then return the processed back to disk before progressing to the next block of data.</li>
+<li>Frequently, only a portion of the table’s rows and columns are ultimately needed by the analysis. Reducing the size of the dataset leaving the database has two benefits: less information travels across the network and R’s and Python’s limited memory space is conserved.</li>
+</ol>
+<p>In some scenarios, it is desirable to use the <code>INSERT</code> SQL command to transfer data within the database; and never travel across the network and never touch R or your local machine. For our large and complicated projects, the majority of data movement uses <code>INSERT</code> commands within SQL files. Among these scenarios, the analysis-focused projects use R to call the sequence of SQL files (see <a href="repo-prototype.html#repo-flow"><code>flow.R</code></a>), while the database-focused project uss <a href="https://en.wikipedia.org/wiki/SQL_Server_Integration_Services">SSIS</a>.</p>
+<p>In both cases, we try to write the SQL files to conform to similar standards and conventions. As stated in <a href="architecture.html#consistency-files">Consistency across Files</a> (and in the <a href="file-prototype-r.html#file-prototype-r">previous chapter</a>), using a consistent file structure can (a) improve the quality of the code because the structure has been proven over time to facilitate good practices and (b) allow your intentions to be more clear to teammates because they are familiar with the order and intentions of the chunks.</p>
+<div id="sql-choice" class="section level2">
+<h2>
+<span class="header-section-number">5.1</span> Choice of Database Engine<a class="anchor" aria-label="anchor" href="#sql-choice"><i class="fas fa-link"></i></a>
+</h2>
+<p>The major relational database engines use roughly the same syntax, but they all have slight deviations and enhancements beyond the SQL standards. Most of our databases are hosted by SQL Server, since that is what OUHSC’s campus seems most comfortable supporting. Consequently, this chapter uses SQL Server 2017+ syntax.</p>
+<p>But like most data science teams, we still need to consume other databases, such as Oracle and MySQL. Outside OUHSC projects, we tend to use PostgreSQL and Redshift.</p>
+</div>
+<div id="sql-ferry" class="section level2">
+<h2>
+<span class="header-section-number">5.2</span> Ferry<a class="anchor" aria-label="anchor" href="#sql-ferry"><i class="fas fa-link"></i></a>
+</h2>
+<p>This basic sql file moves data within a database to create a table named <code>dx</code>, which is contained in the <code>ley_covid_1</code> schema of the <code>cdw_staging</code> database.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb23-1"><a href="file-prototype-sql.html#cb23-1"></a><span class="co">--use cdw_staging</span></span>
+<span id="cb23-2"><a href="file-prototype-sql.html#cb23-2"></a><span class="kw">declare</span> @start_date <span class="dt">date</span> <span class="op">=</span> <span class="st">'2020-02-01'</span>;                               <span class="co">-- sync with config.yml</span></span>
+<span id="cb23-3"><a href="file-prototype-sql.html#cb23-3"></a><span class="kw">declare</span> @stop_date  <span class="dt">date</span> <span class="op">=</span> dateadd(<span class="dt">day</span>, <span class="op">-</span><span class="dv">1</span>, <span class="fu">cast</span>(getdate() <span class="kw">as</span> <span class="dt">date</span>));  <span class="co">-- sync with config.yml</span></span>
+<span id="cb23-4"><a href="file-prototype-sql.html#cb23-4"></a></span>
+<span id="cb23-5"><a href="file-prototype-sql.html#cb23-5"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">if</span> <span class="kw">exists</span> ley_covid_1.dx;</span>
+<span id="cb23-6"><a href="file-prototype-sql.html#cb23-6"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> ley_covid_1.dx(</span>
+<span id="cb23-7"><a href="file-prototype-sql.html#cb23-7"></a>  dx_id           <span class="dt">int</span> identity(<span class="dv">1</span>, <span class="dv">1</span>) <span class="kw">primary</span> <span class="kw">key</span>,</span>
+<span id="cb23-8"><a href="file-prototype-sql.html#cb23-8"></a>  patient_id      <span class="dt">int</span>         <span class="kw">not</span> <span class="kw">null</span>,</span>
+<span id="cb23-9"><a href="file-prototype-sql.html#cb23-9"></a>  covid_confirmed bit         <span class="kw">not</span> <span class="kw">null</span>,</span>
+<span id="cb23-10"><a href="file-prototype-sql.html#cb23-10"></a>  problem_date    <span class="dt">date</span>            <span class="kw">null</span>,</span>
+<span id="cb23-11"><a href="file-prototype-sql.html#cb23-11"></a>  icd10_code      <span class="dt">varchar</span>(<span class="dv">20</span>) <span class="kw">not</span> <span class="kw">null</span></span>
+<span id="cb23-12"><a href="file-prototype-sql.html#cb23-12"></a>);</span>
+<span id="cb23-13"><a href="file-prototype-sql.html#cb23-13"></a><span class="co">-- TRUNCATE TABLE ley_covid_1.dx;</span></span>
+<span id="cb23-14"><a href="file-prototype-sql.html#cb23-14"></a></span>
+<span id="cb23-15"><a href="file-prototype-sql.html#cb23-15"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> ley_covid_1.dx</span>
+<span id="cb23-16"><a href="file-prototype-sql.html#cb23-16"></a><span class="kw">SELECT</span></span>
+<span id="cb23-17"><a href="file-prototype-sql.html#cb23-17"></a>  pr.patient_id</span>
+<span id="cb23-18"><a href="file-prototype-sql.html#cb23-18"></a>  ,ss.covid_confirmed</span>
+<span id="cb23-19"><a href="file-prototype-sql.html#cb23-19"></a>  ,pr.invoice_date     <span class="kw">as</span> problem_date</span>
+<span id="cb23-20"><a href="file-prototype-sql.html#cb23-20"></a>  ,pr.code             <span class="kw">as</span> icd10_code</span>
+<span id="cb23-21"><a href="file-prototype-sql.html#cb23-21"></a>  <span class="co">-- into ley_covid_1.dx</span></span>
+<span id="cb23-22"><a href="file-prototype-sql.html#cb23-22"></a><span class="kw">FROM</span> cdw.star_1.fact_problem       <span class="kw">as</span> pr</span>
+<span id="cb23-23"><a href="file-prototype-sql.html#cb23-23"></a>  <span class="kw">inner</span> <span class="kw">join</span> beasley_covid_1.ss_dx <span class="kw">as</span> ss <span class="kw">on</span> pr.code <span class="op">=</span> ss.icd10_code</span>
+<span id="cb23-24"><a href="file-prototype-sql.html#cb23-24"></a><span class="kw">WHERE</span></span>
+<span id="cb23-25"><a href="file-prototype-sql.html#cb23-25"></a>  pr.problem_date_start <span class="kw">between</span> @start_date <span class="kw">and</span> @stop_date</span>
+<span id="cb23-26"><a href="file-prototype-sql.html#cb23-26"></a>  <span class="kw">and</span></span>
+<span id="cb23-27"><a href="file-prototype-sql.html#cb23-27"></a>  pr.patient_id <span class="kw">is</span> <span class="kw">not</span> <span class="kw">null</span></span>
+<span id="cb23-28"><a href="file-prototype-sql.html#cb23-28"></a><span class="kw">ORDER</span> <span class="kw">BY</span> pr.patient_id, pr.problem_date_start <span class="kw">desc</span></span>
+<span id="cb23-29"><a href="file-prototype-sql.html#cb23-29"></a></span>
+<span id="cb23-30"><a href="file-prototype-sql.html#cb23-30"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> ley_covid_1_dx_patient_id <span class="kw">on</span> ley_covid_1.dx (patient_id);</span>
+<span id="cb23-31"><a href="file-prototype-sql.html#cb23-31"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> ley_covid_1_dx_icd10_code <span class="kw">on</span> ley_covid_1.dx (icd10_code);</span></code></pre></div>
+</div>
+<div id="sql-default-database" class="section level2">
+<h2>
+<span class="header-section-number">5.3</span> Default Databases<a class="anchor" aria-label="anchor" href="#sql-default-database"><i class="fas fa-link"></i></a>
+</h2>
+<p>We prefer not to specify the database of each table, and instead control it through the connection (such as the DSN’s “default database” value). Nevertheless, it’s helpful to include the default database behind a comment for two reasons. First, it communicates to the default database to the human reader. Second, during debugging, the code can be highlighted in <a href="workstation.html#workstation-ads">ADS</a>/<a href="workstation.html#workstation-ssms">SSMS</a> and executed with “F5”; this will mimic what happens when the file is run via automation with a DSN.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb24-1"><a href="file-prototype-sql.html#cb24-1"></a><span class="co">--use cdw_staging</span></span></code></pre></div>
+</div>
+<div id="sql-declare" class="section level2">
+<h2>
+<span class="header-section-number">5.4</span> Declare Values Databases<a class="anchor" aria-label="anchor" href="#sql-declare"><i class="fas fa-link"></i></a>
+</h2>
+<p>Similar to the <a href="file-prototype-r.html#chunk-declare">Declare Globals</a> chunk in a <a href="file-prototype-r">prototypical R file</a>, values set at the top of the file are easy to read and modify.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb25-1"><a href="file-prototype-sql.html#cb25-1"></a><span class="kw">declare</span> @start_date <span class="dt">date</span> <span class="op">=</span> <span class="st">'2020-02-01'</span>;                               <span class="co">-- sync with config.yml</span></span>
+<span id="cb25-2"><a href="file-prototype-sql.html#cb25-2"></a><span class="kw">declare</span> @stop_date  <span class="dt">date</span> <span class="op">=</span> dateadd(<span class="dt">day</span>, <span class="op">-</span><span class="dv">1</span>, <span class="fu">cast</span>(getdate() <span class="kw">as</span> <span class="dt">date</span>));  <span class="co">-- sync with config.yml</span></span></code></pre></div>
+</div>
+<div id="sql-recreate" class="section level2">
+<h2>
+<span class="header-section-number">5.5</span> Recreate Table<a class="anchor" aria-label="anchor" href="#sql-recreate"><i class="fas fa-link"></i></a>
+</h2>
+<p>When batch-loading data, it is typically easiest drop and recreate a database table. In the snippet below, any table with the specific name is dropped/deleted from the database and replaced with a (possibly new) definition. We like to dedicate a line to each table column, with at least three elements per line: the name, the <a href="https://docs.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql">data type</a>, and if nulls are allowed.</p>
+<p>Many other features and keywords are available when designing tables. The ones we occasionally use are:</p>
+<ol style="list-style-type: decimal">
+<li>
+<a href="https://www.w3schools.com/sql/sql_primarykey.ASP"><code>primary key</code></a> helps database optimization when later querying the table, and enforces uniqueness, such as a patient table should not have any two rows with the same <code>patient_id</code> value. Primary keys must be nonmissing, so the <code>not null</code> keyword is redundant.</li>
+<li>
+<a href="https://www.w3schools.com/sql/sql_unique.asp"><code>unique</code></a> is helpful when a table has additional columns that need to be unique (such as <code>patient_ssn</code> and <code>patient_id</code>). A more advanced scenario using a <a href="https://docs.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview#when-should-i-use-a-columnstore-index">clustered columnar table</a>, which is incompatible with the <code>primary key</code> designation.</li>
+<li>
+<code>identity(1, 1)</code> creates a 1, 2, 3, … sequence, which relieves the client of creating the sequence with something like <a href="https://docs.microsoft.com/en-us/sql/t-sql/functions/row-number-transact-sql"><code>row_number()</code></a>. Note that when identity column exists, the number columns in the <code>SELECT</code> clause will be one fewer than the columns defined in <code>CREATE TABLE</code>.</li>
+</ol>
+<div class="sourceCode" id="cb26"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb26-1"><a href="file-prototype-sql.html#cb26-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">if</span> <span class="kw">exists</span> ley_covid_1.dx;</span>
+<span id="cb26-2"><a href="file-prototype-sql.html#cb26-2"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> ley_covid_1.dx(</span>
+<span id="cb26-3"><a href="file-prototype-sql.html#cb26-3"></a>  dx_id           <span class="dt">int</span> identity(<span class="dv">1</span>, <span class="dv">1</span>) <span class="kw">primary</span> <span class="kw">key</span>,</span>
+<span id="cb26-4"><a href="file-prototype-sql.html#cb26-4"></a>  patient_id      <span class="dt">int</span>         <span class="kw">not</span> <span class="kw">null</span>,</span>
+<span id="cb26-5"><a href="file-prototype-sql.html#cb26-5"></a>  covid_confirmed bit         <span class="kw">not</span> <span class="kw">null</span>,</span>
+<span id="cb26-6"><a href="file-prototype-sql.html#cb26-6"></a>  problem_date    <span class="dt">date</span>            <span class="kw">null</span>,</span>
+<span id="cb26-7"><a href="file-prototype-sql.html#cb26-7"></a>  icd10_code      <span class="dt">varchar</span>(<span class="dv">20</span>) <span class="kw">not</span> <span class="kw">null</span></span>
+<span id="cb26-8"><a href="file-prototype-sql.html#cb26-8"></a>);</span></code></pre></div>
+<p>To jump-start the creation of the table definition, we frequently use the <a href="https://docs.microsoft.com/en-us/sql/t-sql/queries/select-into-clause-transact-sql"><code>INTO</code></a> clause. This operation creates a new table, informed the column properties of the source tables. Within <a href="workstation.html#workstation-ads">ADS</a> and <a href="workstation.html#workstation-ssms">SSMS</a>, refresh the list of tables and select the new table; there will be an option to copy the <code>CREATE TABLE</code> statement (similar to the snippet above) and paste it into the sql file. The definition can then be modified, such as tightening from <code>null</code> to <code>not null</code>.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb27-1"><a href="file-prototype-sql.html#cb27-1"></a>  <span class="co">-- into ley_covid_1.dx</span></span></code></pre></div>
+</div>
+<div id="sql-truncate" class="section level2">
+<h2>
+<span class="header-section-number">5.6</span> Truncate Table<a class="anchor" aria-label="anchor" href="#sql-truncate"><i class="fas fa-link"></i></a>
+</h2>
+<p>In scenarios where the table definition is stable and the data is refreshed frequently (say, daily), consider <a href="https://docs.microsoft.com/en-us/sql/t-sql/statements/truncate-table-transact-sql">TRUNCATE</a>-ing the table. When taking this approach, we prefer to keep the <code>DROP</code> and <code>CREATE</code> code in the file, but commented out. This saves development time in the future if the table definition needs to be modified.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb28-1"><a href="file-prototype-sql.html#cb28-1"></a><span class="co">-- TRUNCATE TABLE ley_covid_1.dx;</span></span></code></pre></div>
+</div>
+<div id="sql-insert" class="section level2">
+<h2>
+<span class="header-section-number">5.7</span> INSERT INTO<a class="anchor" aria-label="anchor" href="#sql-insert"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <a href="https://www.w3schools.com/sql/sql_insert_into_select.asp"><code>INSERT INTO</code></a> (when followed by a <code>SELECT</code> clause), simply moves data from the query into the specified table.</p>
+<p>The <code>INSERT INTO</code> clause transfers the columns in the exact order of the query. It <em>does not</em> try to match to the names of the destination table. An error will be thrown if the column types are mismatched (<em>e.g.</em>, attempting to insert a character string into an integer value).</p>
+<p>Even worse, no error will be thrown if the mismatched columns have compatible types. This will occur if the table’s columns are <code>patient_id</code>, <code>weight_kg</code>, and <code>height_cm</code>, but the query’s columns are <code>patient_id</code>, <code>height_cm</code>, and <code>weight_in</code>. Not only will the weight and height be written to the incorrect columns, but the execution will not catch that the source is <code>weight_kg</code>, but the destination is <code>weight_in</code>.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb29-1"><a href="file-prototype-sql.html#cb29-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> ley_covid_1.dx</span></code></pre></div>
+</div>
+<div id="sql-select" class="section level2">
+<h2>
+<span class="header-section-number">5.8</span> SELECT<a class="anchor" aria-label="anchor" href="#sql-select"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <a href="https://www.w3schools.com/sql/sql_select.asp"><code>SELECT</code></a> clause specifies the desired columns. It can also rename columns and perform manipulations.</p>
+<p>We prefer to specify the aliased table of each column. If two source tables have the same column name, an error will be thrown regarding the ambiguity. Even if that’s not a concern, we believe that explicitly specifying the source improves readability and reduces errors.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb30-1"><a href="file-prototype-sql.html#cb30-1"></a><span class="kw">SELECT</span></span>
+<span id="cb30-2"><a href="file-prototype-sql.html#cb30-2"></a>  pr.patient_id</span>
+<span id="cb30-3"><a href="file-prototype-sql.html#cb30-3"></a>  ,ss.covid_confirmed</span>
+<span id="cb30-4"><a href="file-prototype-sql.html#cb30-4"></a>  ,<span class="fu">cast</span>(pr.invoice_datetime <span class="kw">as</span> <span class="dt">date</span>) <span class="kw">as</span> problem_date</span>
+<span id="cb30-5"><a href="file-prototype-sql.html#cb30-5"></a>  ,pr.code                           <span class="kw">as</span> icd10_code</span></code></pre></div>
+</div>
+<div id="sql-from" class="section level2">
+<h2>
+<span class="header-section-number">5.9</span> FROM<a class="anchor" aria-label="anchor" href="#sql-from"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb31-1"><a href="file-prototype-sql.html#cb31-1"></a><span class="kw">FROM</span> cdw.star_1.fact_problem       <span class="kw">as</span> pr</span>
+<span id="cb31-2"><a href="file-prototype-sql.html#cb31-2"></a>  <span class="kw">inner</span> <span class="kw">join</span> beasley_covid_1.ss_dx <span class="kw">as</span> ss <span class="kw">on</span> pr.code <span class="op">=</span> ss.icd10_code</span></code></pre></div>
+</div>
+<div id="sql-where" class="section level2">
+<h2>
+<span class="header-section-number">5.10</span> WHERE<a class="anchor" aria-label="anchor" href="#sql-where"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <a href="https://www.w3schools.com/sql/sql_where.asp"><code>WHERE</code></a> clause reduces the number of returned rows (as opposed to reducing the number of columns in the <code>SELECT</code> clause). Use the indention level to communicate to reader how the subclauses are combined. This is especially important if it both <code>AND</code> and <code>OR</code> operators are used, since their order of operations can be confused easily.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb32-1"><a href="file-prototype-sql.html#cb32-1"></a><span class="kw">WHERE</span></span>
+<span id="cb32-2"><a href="file-prototype-sql.html#cb32-2"></a>  pr.problem_date_start <span class="kw">between</span> @start_date <span class="kw">and</span> @stop_date</span>
+<span id="cb32-3"><a href="file-prototype-sql.html#cb32-3"></a>  <span class="kw">and</span></span>
+<span id="cb32-4"><a href="file-prototype-sql.html#cb32-4"></a>  pr.patient_id <span class="kw">is</span> <span class="kw">not</span> <span class="kw">null</span></span></code></pre></div>
+</div>
+<div id="sql-order-by" class="section level2">
+<h2>
+<span class="header-section-number">5.11</span> ORDER BY<a class="anchor" aria-label="anchor" href="#sql-order-by"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <a href="https://www.w3schools.com/sql/sql_orderby.asp"><code>ORDER BY</code></a> clause simply specifies the order of the rows. Be default, a column’s values will be in <em>asc</em>ending order, but can be <em>desc</em>ending if desired.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb33-1"><a href="file-prototype-sql.html#cb33-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> pr.patient_id, pr.problem_date_start <span class="kw">desc</span></span></code></pre></div>
+</div>
+<div id="sql-indexing" class="section level2">
+<h2>
+<span class="header-section-number">5.12</span> Indexing<a class="anchor" aria-label="anchor" href="#sql-indexing"><i class="fas fa-link"></i></a>
+</h2>
+<p>If the table is large or queried in a variety of ways, <a href="">index</a>ing the table can speed up performance dramatically.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb34-1"><a href="file-prototype-sql.html#cb34-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> ley_covid_1_dx_patient_id <span class="kw">on</span> ley_covid_1.dx (patient_id);</span>
+<span id="cb34-2"><a href="file-prototype-sql.html#cb34-2"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> ley_covid_1_dx_icd10_code <span class="kw">on</span> ley_covid_1.dx (icd10_code);</span></code></pre></div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="file-prototype-r.html"><span class="header-section-number">4</span> Prototypical R File</a></div>
+<div class="next"><a href="repo-prototype.html"><span class="header-section-number">6</span> Prototypical Repository</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#file-prototype-sql"><span class="header-section-number">5</span> Prototypical SQL File</a></li>
+<li><a class="nav-link" href="#sql-choice"><span class="header-section-number">5.1</span> Choice of Database Engine</a></li>
+<li><a class="nav-link" href="#sql-ferry"><span class="header-section-number">5.2</span> Ferry</a></li>
+<li><a class="nav-link" href="#sql-default-database"><span class="header-section-number">5.3</span> Default Databases</a></li>
+<li><a class="nav-link" href="#sql-declare"><span class="header-section-number">5.4</span> Declare Values Databases</a></li>
+<li><a class="nav-link" href="#sql-recreate"><span class="header-section-number">5.5</span> Recreate Table</a></li>
+<li><a class="nav-link" href="#sql-truncate"><span class="header-section-number">5.6</span> Truncate Table</a></li>
+<li><a class="nav-link" href="#sql-insert"><span class="header-section-number">5.7</span> INSERT INTO</a></li>
+<li><a class="nav-link" href="#sql-select"><span class="header-section-number">5.8</span> SELECT</a></li>
+<li><a class="nav-link" href="#sql-from"><span class="header-section-number">5.9</span> FROM</a></li>
+<li><a class="nav-link" href="#sql-where"><span class="header-section-number">5.10</span> WHERE</a></li>
+<li><a class="nav-link" href="#sql-order-by"><span class="header-section-number">5.11</span> ORDER BY</a></li>
+<li><a class="nav-link" href="#sql-indexing"><span class="header-section-number">5.12</span> Indexing</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/OuhscBbmc/data-science-practices-1/blob/main/ch-file-prototype-sql.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/OuhscBbmc/data-science-practices-1/edit/main/ch-file-prototype-sql.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Collaborative Data Science Practices</strong>" was written by Will Beasley. It was last built on 2022-02-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
